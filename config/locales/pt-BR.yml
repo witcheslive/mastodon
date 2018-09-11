@@ -6,6 +6,7 @@ pt-BR:
     about_this: Sobre
     administered_by: 'Administrado por:'
     api: API
+    apps: Apps
     closed_registrations: Os cadastros estão atualmente fechados nesta instância. No entanto, você pode procurar uma instância diferente na qual possa criar uma conta e acessar a mesma rede por lá.
     contact: Contato
     contact_missing: Não definido
@@ -29,15 +30,22 @@ pt-BR:
     other_instances: Lista de instâncias
     privacy_policy: Política de Privacidade
     source_code: Código-fonte
-    status_count_after: publicações
+    status_count_after:
+      one: status
+      other: status
     status_count_before: Autores de
-    terms: Termos de Serviço
-    user_count_after: usuários
+    terms: Termos de serviço
+    user_count_after:
+      one: usuário
+      other: usuários
     user_count_before: Casa de
     what_is_mastodon: O que é Mastodon?
   accounts:
+    choices_html: 'Escolhas de %{name}:'
     follow: Seguir
-    followers: Seguidores
+    followers:
+      one: Seguidor
+      other: Seguidores
     following: Seguindo
     joined: Participa desde %{date}
     media: Mídia
@@ -46,7 +54,12 @@ pt-BR:
     nothing_here: Não há nada aqui!
     people_followed_by: Pessoas que %{name} segue
     people_who_follow: Pessoas que seguem %{name}
-    posts: Toots
+    pin_errors:
+      following: Você tem que estar seguindo a pessoa que você quer sugerir
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
     posts_with_replies: Toots e respostas
     reserved_username: Este usuário está reservado
     roles:
@@ -181,6 +194,7 @@ pt-BR:
         unsuspend_account: "%{name} desativou a suspensão de  %{target}"
         update_custom_emoji: "%{name} atualizou o emoji %{target}"
         update_status: "%{name} atualizou o estado de %{target}"
+      deleted_status: "(status deletado)"
       title: Auditar relatório
     custom_emojis:
       by_domain: Domínio
@@ -277,6 +291,7 @@ pt-BR:
       search: Buscar
       title: Instâncias conhecidas
     invites:
+      deactivate_all: Desativar todos
       filter:
         all: Todos
         available: Disponíveis
@@ -340,6 +355,9 @@ pt-BR:
       contact_information:
         email: E-mail
         username: Contate usuário
+      custom_css:
+        desc_html: Modificar o visual com CSS que é carregado em todas as páginas
+        title: CSS customizado
       hero:
         desc_html: Aparece na página inicial. Ao menos 600x100px é recomendado. Se não estiver definido, o thumbnail da instância é usado no lugar
         title: Imagem de capa
@@ -398,6 +416,7 @@ pt-BR:
       media:
         title: Mídia
       no_media: Não há mídia
+      no_status_selected: Nenhum status foi modificado porque nenhum estava selecionado
       title: Postagens da conta
       with_media: Com mídia
     subscriptions:
@@ -407,6 +426,12 @@ pt-BR:
       last_delivery: Última entrega
       title: WebSub
       topic: Tópico
+    suspensions:
+      bad_acct_msg: Os valores de confirmação não correspondem. Você está suspendendo a conta certa?
+      hint_html: 'Para confirmar a suspensão da conta, por favor digite %{value} no campo abaixo:'
+      proceed: Prosseguir
+      title: Suspender %{acct}
+      warning_html: 'Suspender essa conta vai remover <strong>irreversivelmente</strong> dados dessa conta, o que inclui:'
     title: Administração
   admin_mailer:
     new_report:
@@ -650,11 +675,14 @@ pt-BR:
     publishing: Publicação
     web: Web
   remote_follow:
-    acct: Insira o seu usuário@domínio do qual você quer seguir
+    acct: Insira o seu usuário@domínio a partir do qual você deseja agir
     missing_resource: Não foi possível encontrar a URL de direcionamento para a sua conta
     no_account_html: Não tem uma conta? Você pode <a href='%{sign_up_path}' target='_blank'>cadastrar-se aqui</a>
     proceed: Prosseguir para seguir
     prompt: 'Você irá seguir:'
+  remote_interaction:
+    proceed: Continue para interagir
+    prompt: 'Você quer interagir com este toot:'
   remote_unfollow:
     error: Erro
     title: Título
@@ -738,6 +766,7 @@ pt-BR:
       private: Toot não-público não pode ser fixado
       reblog: Um compartilhamento não pode ser fixado
     show_more: Mostrar mais
+    sign_in_to_participate: Entre para participar dessa conversa
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Apenas seguidores

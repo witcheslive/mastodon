@@ -6,6 +6,7 @@ eu:
     about_this: Honi buruz
     administered_by: 'Administratzailea(k):'
     api: APIa
+    apps: Aplikazio mugikorrak
     closed_registrations: Harpidetza itxita dago orain instantzia honetan. Hala ere, beste instantzia bat aurkitu dezakezu kontua egiteko eta hona ere sarbidea izan.
     contact: Kontaktua
     contact_missing: Ezarri gabe
@@ -29,15 +30,22 @@ eu:
     other_instances: Instantzien zerrenda
     privacy_policy: Pribatutasun politika
     source_code: Iturburu kodea
-    status_count_after: mezu idatzi dituzte
+    status_count_after:
+      one: mezu
+      other: mezu
     status_count_before: Hauek
     terms: Erabilera baldintzak
-    user_count_after: erabiltzaile daude
+    user_count_after:
+      one: erabiltzaile
+      other: erabiltzaile
     user_count_before: Hemen
     what_is_mastodon: Zer da Mastodon?
   accounts:
+    choices_html: "%{name}(r)en aukerak:"
     follow: Jarraitu
-    followers: Jarraitzaile
+    followers:
+      one: Jarraitzaile
+      other: jarraitzaile
     following: Jarraitzen
     joined: "%{date}(e)an elkartua"
     media: Multimedia
@@ -46,7 +54,12 @@ eu:
     nothing_here: Ez dago ezer hemen!
     people_followed_by: "%{name}(e)k jarraitzen dituenak"
     people_who_follow: "%{name} jarraitzen dutenak"
-    posts: Toot-ak
+    pin_errors:
+      following: Onetsi nahi duzun pertsona aurretik jarraitu behar duzu
+    posts:
+      one: Toot
+      other: Toot
+    posts_tab_heading: Tootak
     posts_with_replies: Toot eta erantzunak
     reserved_username: Erabiltzaile-izena erreserbatuta dago
     roles:
@@ -181,6 +194,7 @@ eu:
         unsuspend_account: "%{name}(e)k %{target} kontuaren kanporaketa atzera bota du"
         update_custom_emoji: "%{name}(e)k %{target} emoji-a eguneratu du"
         update_status: "%{name} (e)k %{target}(r)en mezua aldatu du"
+      deleted_status: "(ezabatutako mezua)"
       title: Auditoria-egunkaria
     custom_emojis:
       by_domain: Domeinua
@@ -277,6 +291,7 @@ eu:
       search: Bilatu
       title: Instantzia ezagunak
     invites:
+      deactivate_all: Desgaitu guztiak
       filter:
         all: Denak
         available: Eskuragarri
@@ -285,6 +300,7 @@ eu:
       title: Gonbidapenak
     relays:
       add_new: Gehitu hari berria
+      status: Mezuak
     report_notes:
       created_msg: Salaketa oharra ongi sortu da!
       destroyed_msg: Salaketa oharra ongi ezabatu da!
@@ -334,12 +350,18 @@ eu:
       contact_information:
         email: Laneko e-mail helbidea
         username: Kontaktuaren erabiltzaile-izena
+      custom_css:
+        desc_html: Aldatu itxura orri bakoitzean kargatutako CSS bidez
+        title: CSS pertsonala
       hero:
         desc_html: Azaleko orrian bistaratua. Gutxienez 600x100px aholkatzen da. Ezartzen ez bada, instantziaren irudia hartuko du
         title: Azaleko irudia
       peers_api_enabled:
         desc_html: Instantzia honek fedibertsuan aurkitutako domeinu-izenak
         title: Argitaratu aurkitutako instantzien zerrenda
+      preview_sensitive_media:
+        desc_html: Beste webguneetako esteken aurrebistak iruditxoa izango du multimedia hunkigarri gisa markatzen bada ere
+        title: Erakutsi multimedia hunkigarria OpenGraph aurrebistetan
       registrations:
         closed_message:
           desc_html: Azaleko orrian bistaratua izen ematea ixten denean. HTML etiketak erabili ditzakezu
@@ -360,11 +382,14 @@ eu:
         desc_html: Erakutsi langile banda erabiltzailearen orrian
         title: Erakutsi langile banda
       site_description:
-        desc_html: Azaleko orrian eta meta etiketetan agertuko den sarrera paragrafoa. HTML etiketak erabili ditzakezu, zehazki <code>&lt;a&gt;</code> eta <code>&lt;em&gt;</code>.
+        desc_html: Azaleko orrian agertuko den sarrera paragrafoa. Azaldu zerk egiten duen berezi Mastodon zerbitzari hau eta garrantzizko beste edozer. HTML etiketak erabili ditzakezu, zehazki <code>&lt;a&gt;</code> eta <code>&lt;em&gt;</code>.
         title: Instantziaren deskripzioa
       site_description_extended:
         desc_html: Zure jokabide-koderako  toki on bat, arauak, gidalerroak eta zure instantzia desberdin egiten duten bestelakoak. HTML etiketak erabili ditzakezu
         title: Informazio hedatu pertsonalizatua
+      site_short_description:
+        desc_html: Albo-barra eta meta etiketetan bistaratua. Deskribatu zerk egiten duen Mastodon zerbitzari hau berezia paragrafo batean. Hutsik lagatzekotan lehenetsitako deskripzioa agertuko da.
+        title: Instantziaren deskripzio laburra
       site_terms:
         desc_html: Zure pribatutasun politika, erabilera baldintzak eta bestelako testu legalak idatzi ditzakezu. HTML etiketak erabili ditzakezu
         title: Erabilera baldintza pertsonalizatuak
@@ -386,6 +411,7 @@ eu:
       media:
         title: Multimedia
       no_media: Multimediarik ez
+      no_status_selected: Ez da mezurik aldatu ez delako mezurik aukeratu
       title: Kontuaren mezuak
       with_media: Multimediarekin
     subscriptions:
@@ -395,6 +421,11 @@ eu:
       last_delivery: Azken bidalketa
       title: WebSub
       topic: Mintzagaia
+    suspensions:
+      bad_acct_msg: Berrespen balioa ez dator bat. Dagokion kontua kanporatzen ari zara?
+      hint_html: 'Kontuaren kanporatzea berresteko, sartu %{value} beheko eremuan:'
+      title: Kanporatu %{acct}
+      warning_html: 'Kontu hau kanporatzeak <strong>behin betiko</strong> ezabatuko ditu kontu honetako datuak, hauek barne:'
     title: Administrazioa
   admin_mailer:
     new_report:
@@ -498,6 +529,22 @@ eu:
     follows: Zuk jarraitutakoak
     mutes: Zuk mututukoak
     storage: Multimedia biltegiratzea
+  filters:
+    contexts:
+      home: Hasierako denbora-lerroa
+      notifications: Jakinarazpenak
+      public: Denbora-lerro publikoak
+      thread: Elkarrizketak
+    edit:
+      title: Editatu iragazkia
+    errors:
+      invalid_context: Testuinguru baliogabe edo hutsa eman da
+      invalid_irreversible: Behin betiko iragazketa hasiera edo jakinarazpenen testuinguruan besterik ez dabil
+    index:
+      delete: Ezabatu
+      title: Iragazkiak
+    new:
+      title: Gehitu iragazki berria
   followers:
     domain: Domeinua
     explanation_html: Zure mezuen pribatutasuna bermatu nahi baduzu, nork jarraitzen zaituen jakin behar duzu. <strong>Zure mezu pribatuak zure jarraitzaileak dituzten instantzia guztietara bidaltzen dira</strong>.  Instantzia bateko langileek edo softwareak zure pribatutasunari dagokion begirunea ez dutela izango uste baduzu, berrikusi eta kendu jarraitzaileak.
@@ -510,6 +557,10 @@ eu:
     true_privacy_html: Kontuan izan <strong>egiazko pribatutasuna lortzeko muturretik muturrerako zifratzea ezinbestekoa dela</strong>.
     unlocked_warning_html: Edonork jarraitu zaitzake eta berehala zure mezu pribatuak ikusi. %{lock_link} jarraitzaileak berrikusi eta ukatu ahal izateko.
     unlocked_warning_title: Zure kontua ez dago giltzapetuta
+  footer:
+    developers: Garatzaileak
+    more: Gehiago…
+    resources: Baliabideak
   generic:
     changes_saved_msg: Aldaketak ongi gorde dira!
     save_changes: Gorde aldaketak
@@ -620,6 +671,7 @@ eu:
   remote_follow:
     acct: Sartu jarraitzeko erabili nahi duzun erabiltzaile@domeinua
     missing_resource: Ezin izan da zure konturako behar den birbideratze URL-a
+    no_account_html: Ez duzu konturik? <a href='%{sign_up_path}' target='_blank'>Izena eman</a> dezakezu
     proceed: Ekin jarraitzeari
     prompt: 'Hau jarraituko duzu:'
   remote_unfollow:

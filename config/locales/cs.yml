@@ -1,11 +1,12 @@
 ---
 cs:
   about:
-    about_hashtag_html: Toto jsou veřejné tooty označené hashtagem<strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv na fediverse, můžete s nimi interagovat.
+    about_hashtag_html: Toto jsou veřejné tooty označené hashtagem <strong>#%{hashtag}</strong>. Pokud máte účet kdekoliv na fediverse, můžete s nimi interagovat.
     about_mastodon_html: Mastodon je sociální síť založená na otevřených webových protokolech a svobodném, otevřeném softwaru. Je decentrovalizovaná jako e-mail.
     about_this: O této instanci
     administered_by: 'Server spravuje:'
     api: API
+    apps: Mobilní aplikace
     closed_registrations: Registrace na této instanci jsou momentálně uzavřené. Můžete si však najít jinou instanci, vytvořit si na ní účet a získat z ní přístup do naprosto stejné sítě.
     contact: Kontakt
     contact_missing: Nenastaveno
@@ -23,21 +24,28 @@ cs:
       real_conversation_title: Vytvořen pro opravdovou konverzaci
       within_reach_body: Několik aplikací pro iOS, Android a jiné platformy vám díky jednoduchému API ekosystému dovolují držet krok s vašimi přáteli, ať už jste kdekoliv.
       within_reach_title: Vždy v dosahu
-    generic_description: "%{domain} je jedním serverem v síti"
+    generic_description: "%{domain} je jedním ze serverů v síti"
     hosted_on: Mastodon hostovaný na %{domain}
     learn_more: Zjistit více
     other_instances: Seznam instancí
     privacy_policy: Zásady soukromí
     source_code: Zdrojový kód
-    status_count_after: příspěvků
+    status_count_after:
+      one: příspěvek
+      other: příspěvků
     status_count_before: Kteří napsali
     terms: Podmínky používání
-    user_count_after: uživatelů
+    user_count_after:
+      one: uživatele
+      other: uživatelů
     user_count_before: Domov
     what_is_mastodon: Co je Mastodon?
   accounts:
+    choices_html: 'Volby uživatele %{name}:'
     follow: Sledovat
-    followers: Sledovatelé
+    followers:
+      one: Sledovatel
+      other: Sledovatelé
     following: Sleduje
     joined: Připojil/a se %{date}
     media: Média
@@ -46,7 +54,12 @@ cs:
     nothing_here: Tady nic není!
     people_followed_by: Lidé, které %{name} sleduje
     people_who_follow: Lidé, kteří sledují uživatele %{name}
-    posts: Tooty
+    pin_errors:
+      following: Musíte již sledovat osobu, kterou chcete podpořit
+    posts:
+      one: Toot
+      other: Tooty
+    posts_tab_heading: Tooty
     posts_with_replies: Tooty a odpovědi
     reserved_username: Toto uživatelské jméno je rezervováno
     roles:
@@ -181,6 +194,7 @@ cs:
         unsuspend_account: "%{name} zrušil/a suspenzaci účtu uživatele %{target}"
         update_custom_emoji: "%{name} aktualizoval/a emoji %{target}"
         update_status: "%{name} aktualizoval/a příspěvek uživatele %{target}"
+      deleted_status: "(smazaný příspěvek)"
       title: Záznam auditu
     custom_emojis:
       by_domain: Doména
@@ -277,6 +291,7 @@ cs:
       search: Hledat
       title: Známé instance
     invites:
+      deactivate_all: Deaktivovat vše
       filter:
         all: Vše
         available: Dostupné
@@ -288,6 +303,8 @@ cs:
       description_html: "<strong>Federovací most</strong> je přechodný server, který vyměňuje velká množství veřejných tootů mezi servery, které z něj odebírají a poblikují na něj. <strong>Může pomoci malým a středně velkým serverům objevovat obsah z fediverse</strong>, což by jinak vyžadovalo, aby místní uživatelé manuálně sledovali jiné lidi na vzdálených serverech."
       enable_hint: Je-li tohle povoleno, začne váš server odebírat všechny veřejné tooty z tohoto mostu a odesílat na něj své vlastní veřejné tooty.
       inbox_url: URL mostu
+      pending: Čekám na souhlas mostu
+      save_and_enable: Uložit a povolit
       setup: Nastavit připojení k mostu
       status: Stav
       title: Mosty
@@ -340,11 +357,14 @@ cs:
       contact_information:
         email: Pracovní e-mail
         username: Uživatelské jméno kontaktu
+      custom_css:
+        desc_html: Pozměnit vzhled pomocí šablony CSS načtené na každé stránce
+        title: Vlastní CSS
       hero:
         desc_html: Zobrazuje se na hlavní stránce. Doporučuje se rozlišení alespoň 600x100px. Pokud toto není nastavené, bude zobrazena miniatura instance
         title: Hlavní obrázek
       peers_api_enabled:
-        desc_html: Domény, na které tato instanve narazila ve fediverse
+        desc_html: Domény, na které tato instance narazila ve fediverse
         title: Zveřejnit seznam objevených instancí
       preview_sensitive_media:
         desc_html: Náhledy odkazů na jiných stránkách budou zobrazeny i pokud jsou media označena jako citlivá
@@ -398,6 +418,7 @@ cs:
       media:
         title: Média
       no_media: Žádná média
+      no_status_selected: Nebyly změněny žádné příspěvky, neboť žádné nebyly vybrány
       title: Příspěvky účtu
       with_media: S médii
     subscriptions:
@@ -407,6 +428,12 @@ cs:
       last_delivery: Poslední doručení
       title: WebSub
       topic: Téma
+    suspensions:
+      bad_acct_msg: Hodnota pro potvrzení neodpovídá. Suspendujete správný účet?
+      hint_html: 'Pro potvrzení suspenzace účtu prosím zadejte do pole níže %{value}:'
+      proceed: Pokračovat
+      title: Suspendovat účet %{acct}
+      warning_html: 'Suspenzace tohoto účtu <strong>nenávratně</strong> smaže z tohoto účtu data, včetně:'
     title: Administrace
   admin_mailer:
     new_report:
@@ -649,11 +676,14 @@ cs:
     publishing: Publikování
     web: Web
   remote_follow:
-    acct: Napište svou přezdívku@doménu, ze které chcete sledovat
+    acct: Napište svou přezdívku@doménu, ze které chcete jednat
     missing_resource: Nemůžeme najít požadované přesměrovací URL pro váš účet
     no_account_html: Ještě nemáte účet? Můžete se <a href='%{sign_up_path}' target='_blank'>registrovat zde</a>
     proceed: Pokračujte pro sledování
     prompt: 'Budete sledovat:'
+  remote_interaction:
+    proceed: Pokračujte k interakci
+    prompt: 'Chcete interagovat s tímto tootem:'
   remote_unfollow:
     error: Chyba
     title: Nadpis
@@ -737,6 +767,7 @@ cs:
       private: Nelze připnout neveřejné tooty
       reblog: Nelze připnout boostnutí
     show_more: Zobrazit více
+    sign_in_to_participate: Chcete-li se účastnit této konverzace, přihlaste se
     title: '%{name}: "%{quote}"'
     visibilities:
       private: Pouze pro sledovatele
@@ -748,7 +779,7 @@ cs:
   stream_entries:
     pinned: Připnutý toot
     reblogged: boostnutý
-    sensitive_content: CItlivý obsah
+    sensitive_content: Citlivý obsah
   terms:
     body_html: |
       <h2>Zásady soukromí</h2>
