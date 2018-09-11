@@ -42,8 +42,10 @@ en:
     what_is_mastodon: What is Mastodon?
   accounts:
     choices_html: "%{name}'s choices:"
-    follow: Follow
-    followers: Followers
+    follow: Enter discipleship
+    followers:
+      one: Disciple
+      other: Disciples
     following: Following
     joined: Joined %{date}
     media: Media
