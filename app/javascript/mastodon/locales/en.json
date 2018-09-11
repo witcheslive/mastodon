@@ -142,6 +142,7 @@
   "keyboard_shortcuts.column": "to focus a cant in one of the columns",
   "keyboard_shortcuts.compose": "to focus the compose textarea",
   "keyboard_shortcuts.description": "Description",
+  "keyboard_shortcuts.direct": "to open the seance list",
   "keyboard_shortcuts.down": "to move down in the list",
   "keyboard_shortcuts.enter": "to open cant",
   "keyboard_shortcuts.favourite": "to place a sigil",
