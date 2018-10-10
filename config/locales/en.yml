@@ -33,7 +33,7 @@ en:
     status_count_after:
       one: cant
       other: cants
-    status_count_before: Who inscribed
+    status_count_before: Whomstd've inscribed
     terms: Terms of service
     user_count_after:
       one: witches
