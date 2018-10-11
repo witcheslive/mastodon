@@ -38,7 +38,7 @@ en:
     user_count_after:
       one: witches
       other: witches
-    user_count_before: Coven of
+    user_count_before: Digital super coven of
     what_is_mastodon: What is Mastodon?
   accounts:
     choices_html: "%{name}'s choices:"
