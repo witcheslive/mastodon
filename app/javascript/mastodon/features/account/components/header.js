@@ -162,11 +162,17 @@ class Header extends ImmutablePureComponent {
       return isInCoven ? '⛧' : '';
     }
 
+    function covenCheckPre() {
+      const isInCoven = !/\@/g.test(acctName);
+      return isInCoven ? '⛤' : '';
+    }
+
     return (
       <div className={classNames('account__header', { inactive: !!account.get('moved') })} style={{ backgroundImage: `url(${account.get('header')})` }}>
         <div>
           <Avatar account={account} />
 
+          <span className='account__header__covenprefix'>{covenCheckPre()}</span>
           <span className='account__header__display-name' dangerouslySetInnerHTML={displayNameHtml} />
           <span className='account__header__coven'>{covenCheck()}</span>
           <span className='account__header__username'>@{acctName} {lockedIcon}</span>
