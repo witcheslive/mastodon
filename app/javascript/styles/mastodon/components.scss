@@ -1195,18 +1195,12 @@ a .account__avatar {
   .account__header__display-name {
     color: $primary-text-color;
     display: inline-block;
-    //width: 100%;
+    width: 100%;
     font-size: 20px;
     line-height: 27px;
     font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-
-  .account__header__coven {
-    .emojione {
-      margin: -2.2ex .45em .2ex;
-    }
   }
 
   .account__header__username {
