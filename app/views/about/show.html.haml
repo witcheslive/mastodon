@@ -14,6 +14,9 @@
         .brand
           = link_to root_url do
             = image_tag asset_pack_path('logo_full.svg'), alt: 'Mastodon'
+        .relme
+          %a(href="https://witches.live/@anna" rel="me noreferrer" target="_self")
+
 
       - if Setting.timeline_preview
         .column-1
