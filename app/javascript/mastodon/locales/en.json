@@ -319,6 +319,8 @@
   "tabs_bar.home": "The Cauldron",
   "tabs_bar.local_timeline": "The Sabbath",
   "tabs_bar.notifications": "The Raven",
+  "suggestions.dismiss": "Dismiss suggestion",
+  "suggestions.header": "You might be interested in…",
   "tabs_bar.search": "Search",
   "trends.count_by_accounts": "{count} {rawCount, plural, one {person} other {people}} talking",
   "ui.beforeunload": "Your draft will be lost if you leave Mastodon.",
