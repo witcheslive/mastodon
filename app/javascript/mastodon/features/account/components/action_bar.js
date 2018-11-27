@@ -166,7 +166,7 @@ class ActionBar extends React.PureComponent {
 
             <NavLink exact activeClassName='active' className='account__action-bar__tab' to={`/accounts/${account.get('id')}/followers`} title={intl.formatNumber(account.get('followers_count'))}>
               <FormattedMessage id='account.followers' defaultMessage='Followers' />
-              <strong>\26e7 666 \26e7</strong>
+              <strong>⛧666⛧</strong>
             </NavLink>
           </div>
 
