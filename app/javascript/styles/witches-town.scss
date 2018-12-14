@@ -50,6 +50,13 @@ $ui-highlight-color: #A288BD;
   content: "\26e7 666 \26e7";
 }
 
+//pretty scrollbars on firefox
+
+html {
+  scrollbar-face-color: lighten($ui-base-color, 4%);
+  scrollbar-track-color: rgba($base-overlay-background, 0.1);
+}
+
 // Boost icon
 @function hex-color($color) {
   @if type-of($color) == 'color' {
