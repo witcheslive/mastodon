@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_26_034033) do
+ActiveRecord::Schema.define(version: 2018_12_26_021420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,43 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
     t.index ["target_account_id"], name: "index_account_pins_on_target_account_id"
   end
 
+  create_table "account_stats", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "statuses_count", default: 0, null: false
+    t.bigint "following_count", default: 0, null: false
+    t.bigint "followers_count", default: 0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "last_status_at"
+    t.index ["account_id"], name: "index_account_stats_on_account_id", unique: true
+  end
+
+  create_table "account_tag_stats", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "accounts_count", default: 0, null: false
+    t.boolean "hidden", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_account_tag_stats_on_tag_id", unique: true
+  end
+
+  create_table "account_warning_presets", force: :cascade do |t|
+    t.text "text", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "account_warnings", force: :cascade do |t|
+    t.bigint "account_id"
+    t.bigint "target_account_id"
+    t.integer "action", default: 0, null: false
+    t.text "text", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_warnings_on_account_id"
+    t.index ["target_account_id"], name: "index_account_warnings_on_target_account_id"
+  end
+
   create_table "accounts", force: :cascade do |t|
     t.string "username", default: "", null: false
     t.string "domain"
@@ -85,9 +122,6 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
     t.boolean "suspended", default: false, null: false
     t.boolean "locked", default: false, null: false
     t.string "header_remote_url", default: "", null: false
-    t.integer "statuses_count", default: 0, null: false
-    t.integer "followers_count", default: 0, null: false
-    t.integer "following_count", default: 0, null: false
     t.datetime "last_webfingered_at"
     t.string "inbox_url", default: "", null: false
     t.string "outbox_url", default: "", null: false
@@ -99,11 +133,20 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
     t.string "featured_collection_url"
     t.jsonb "fields"
     t.string "actor_type"
+    t.boolean "discoverable"
+    t.string "also_known_as", array: true
     t.index "(((setweight(to_tsvector('simple'::regconfig, (display_name)::text), 'A'::\"char\") || setweight(to_tsvector('simple'::regconfig, (username)::text), 'B'::\"char\")) || setweight(to_tsvector('simple'::regconfig, (COALESCE(domain, ''::character varying))::text), 'C'::\"char\")))", name: "search_index", using: :gin
     t.index "lower((username)::text), lower((domain)::text)", name: "index_accounts_on_username_and_domain_lower", unique: true
     t.index ["moved_to_account_id"], name: "index_accounts_on_moved_to_account_id"
     t.index ["uri"], name: "index_accounts_on_uri"
     t.index ["url"], name: "index_accounts_on_url"
+  end
+
+  create_table "accounts_tags", id: false, force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["account_id", "tag_id"], name: "index_accounts_tags_on_account_id_and_tag_id"
+    t.index ["tag_id", "account_id"], name: "index_accounts_tags_on_tag_id_and_account_id", unique: true
   end
 
   create_table "admin_action_logs", force: :cascade do |t|
@@ -228,12 +271,12 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
     t.index ["target_account_id"], name: "index_follows_on_target_account_id"
   end
 
-  create_table "identities", id: :serial, force: :cascade do |t|
-    t.integer "user_id"
+  create_table "identities", force: :cascade do |t|
     t.string "provider", default: "", null: false
     t.string "uid", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_identities_on_user_id"
   end
 
@@ -595,8 +638,10 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
     t.bigint "invite_id"
     t.string "remember_token"
     t.string "chosen_languages", array: true
+    t.bigint "created_by_application_id"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["created_by_application_id"], name: "index_users_on_created_by_application_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -629,6 +674,10 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
   add_foreign_key "account_moderation_notes", "accounts", column: "target_account_id"
   add_foreign_key "account_pins", "accounts", column: "target_account_id", on_delete: :cascade
   add_foreign_key "account_pins", "accounts", on_delete: :cascade
+  add_foreign_key "account_stats", "accounts", on_delete: :cascade
+  add_foreign_key "account_tag_stats", "tags", on_delete: :cascade
+  add_foreign_key "account_warnings", "accounts", column: "target_account_id", on_delete: :cascade
+  add_foreign_key "account_warnings", "accounts", on_delete: :nullify
   add_foreign_key "accounts", "accounts", column: "moved_to_account_id", on_delete: :nullify
   add_foreign_key "admin_action_logs", "accounts", on_delete: :cascade
   add_foreign_key "backups", "users", on_delete: :nullify
@@ -643,7 +692,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
   add_foreign_key "follow_requests", "accounts", name: "fk_76d644b0e7", on_delete: :cascade
   add_foreign_key "follows", "accounts", column: "target_account_id", name: "fk_745ca29eac", on_delete: :cascade
   add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
-  add_foreign_key "identities", "users", on_delete: :cascade
+  add_foreign_key "identities", "users", name: "fk_bea040f377", on_delete: :cascade
   add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
   add_foreign_key "invites", "users", on_delete: :cascade
   add_foreign_key "list_accounts", "accounts", on_delete: :cascade
@@ -684,6 +733,7 @@ ActiveRecord::Schema.define(version: 2018_10_26_034033) do
   add_foreign_key "subscriptions", "accounts", name: "fk_9847d1cbb5", on_delete: :cascade
   add_foreign_key "users", "accounts", name: "fk_50500f500d", on_delete: :cascade
   add_foreign_key "users", "invites", on_delete: :nullify
+  add_foreign_key "users", "oauth_applications", column: "created_by_application_id", on_delete: :nullify
   add_foreign_key "web_push_subscriptions", "oauth_access_tokens", column: "access_token_id", on_delete: :cascade
   add_foreign_key "web_push_subscriptions", "users", on_delete: :cascade
   add_foreign_key "web_settings", "users", name: "fk_11910667b2", on_delete: :cascade
