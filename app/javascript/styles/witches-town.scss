@@ -53,8 +53,7 @@ $ui-highlight-color: #A288BD;
 //pretty scrollbars on firefox
 
 html {
-  scrollbar-face-color: lighten($ui-base-color, 4%);
-  scrollbar-track-color: rgba($base-overlay-background, 0.1);
+  scrollbar-color: lighten($ui-base-color, 4%) rgba($base-overlay-background, 0.1);
 }
 
 // Boost icon
