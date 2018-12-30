@@ -25,6 +25,19 @@ RSpec.describe PostStatusService, type: :service do
     expect(status.thread).to eq in_reply_to_status
   end
 
+  it 'creates response to the original status of boost' do
+    boosted_status = Fabricate(:status)
+    in_reply_to_status = Fabricate(:status, reblog: boosted_status)
+    account = Fabricate(:account)
+    text = "test status update"
+
+    status = subject.call(account, text, in_reply_to_status)
+
+    expect(status).to be_persisted
+    expect(status.text).to eq text
+    expect(status.thread).to eq boosted_status
+  end
+
   it 'creates a sensitive status' do
     status = create_status_with_options(sensitive: true)
 
@@ -53,6 +66,13 @@ RSpec.describe PostStatusService, type: :service do
 
     expect(status).to be_persisted
     expect(status.visibility).to eq "private"
+  end
+
+  it 'creates a status with limited visibility for silenced users' do
+    status = subject.call(Fabricate(:account, silenced: true), 'test', nil, visibility: :public)
+
+    expect(status).to be_persisted
+    expect(status.visibility).to eq "unlisted"
   end
 
   it 'creates a status for the given application' do

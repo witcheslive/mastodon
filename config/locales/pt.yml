@@ -92,10 +92,6 @@ pt:
       most_recent_activity: Actividade mais recente
       most_recent_ip: IP mais recente
       not_subscribed: Não inscrito
-      order:
-        alphabetic: Alfabética
-        most_recent: Mais recente
-        title: Ordem
       outbox_url: URL da caixa de saída
       perform_full_suspension: Fazer suspensão completa
       profile_url: URL do perfil
@@ -122,7 +118,6 @@ pt:
       shared_inbox_url: URL da caixa de entrada compartilhada
       show:
         created_reports: Relatórios gerados por esta conta
-        report: relatórios
         targeted_reports: Relatórios feitos sobre esta conta
       silence: Silêncio
       statuses: Status
