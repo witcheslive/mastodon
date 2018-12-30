@@ -12,6 +12,16 @@ services:
       - ./postgres/postgresql.conf:/etc/postgresql.conf
     command: postgres -c config_file=/etc/postgresql.conf
 
+  pgbouncer:
+    image: angristan/pgbouncer
+    restart: always
+    networks:
+      - internal_network
+    volumes:
+      - ./pgbouncer:/etc/pgbouncer
+    depends_on:
+      - db
+
   redis:
     restart: always
     image: redis:4.0-alpine
