@@ -80,8 +80,8 @@ Rails.application.routes.draw do
   get  '/interact/:id', to: 'remote_interaction#new', as: :remote_interaction
   post '/interact/:id', to: 'remote_interaction#create'
 
-  get '/explore', to: 'directories#index', as: :explore
-  get '/explore/:id', to: 'directories#show', as: :explore_hashtag
+# no. this feature sucks and is bad.  get '/explore', to: 'directories#index', as: :explore
+#  get '/explore/:id', to: 'directories#show', as: :explore_hashtag
 
   namespace :settings do
     resource :profile, only: [:show, :update]
