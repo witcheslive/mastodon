@@ -733,14 +733,15 @@ en:
     prompt: 'You will become a disciple of:'
     reason_html: "<strong>What's all this then?</strong> The familiars are unsure if you are part of our coven at <code>%{instance}</code>, and would like to confirm your home dimension."
   remote_interaction:
-    proceed: Proceed to charm/channel
-    prompt: 'You want to charm or channel this cant:'
+    favourite:
+      proceed: Put a sigil on it
+      prompt: 'You want to place a sigil on this cant:'
     reblog:
-      proceed: Proceed to channel
-    reply:
+      proceed: Channel this cant
       prompt: 'You want to channel this cant:'
-      proceed: Proceed to charm
-      prompt: 'You want to charm to this cant:'
+    reply:
+      proceed: Charm this cant
+      prompt: 'You want to charm this cant:'
   remote_unfollow:
     error: Error
     title: Title
