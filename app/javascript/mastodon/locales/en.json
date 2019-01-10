@@ -329,6 +329,8 @@
   "search_results.statuses": "Cants",
   "search_results.total": "{count, number} {count, plural, one {result} other {results}}",
   "standalone.public_title": "A look inside...",
+  "status.admin_account": "Open moderation interface for @{name}",
+  "status.admin_status": "Open this status in the moderation interface",
   "status.block": "Ward @{name}",
   "status.cancel_reblog_private": "Unchannel",
   "status.cannot_reblog": "This cant cannot be channeled",
