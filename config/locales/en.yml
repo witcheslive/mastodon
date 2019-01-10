@@ -728,10 +728,10 @@ en:
   remote_follow:
     acct: Enter your username@domain you want to act from
     missing_resource: Could not find the required redirect URL for your account
-    no_account_html: Don't have an account? You can <a href='%{sign_up_path}' target='_blank'>sign up here</a>
+    no_account_html: Would you like to join the digital super coven? <a href='%{sign_up_path}' target='_blank'>You can sign up here</a>, and the best news is we're not a cult!
     proceed: Proceed to discipleship
     prompt: 'You will become a disciple of:'
-    reason_html: "<strong>Why is this step necessary?</strong> <code>%{instance}</code> might not be the realm from which you hail, so we need to redirect you to your home dimension first."
+    reason_html: "<strong>What's all this then?</strong> The familiars are unsure if you are part of our coven at <code>%{instance}</code>, and would like to confirm your home dimension."
   remote_interaction:
     proceed: Proceed to charm/channel
     prompt: 'You want to charm or channel this cant:'
