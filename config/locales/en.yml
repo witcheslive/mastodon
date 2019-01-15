@@ -679,7 +679,7 @@ en:
         other: Also, you have acquired %{count} new disciples while being away! Amazing!
       subject:
         one: "Your raven brings 1 new notification since your last visit \U0001F418"
-        other: "%Your raven brings {count} new notifications since your last visit \U0001F418"
+        other: "Your raven brings %{count} new notifications since your last visit \U0001F418"
       title: In your absence...
     favourite:
       body: '%{name} placed a sigil on your cant:'
