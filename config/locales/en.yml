@@ -7,7 +7,7 @@ en:
     administered_by: 'High (heh) Priestess:'
     api: API
     apps: Mobile apps
-    closed_registrations: Registrations are currently closed on this instance. However! You can find a different instance to make an account on and get access to the very same network from there.
+    closed_registrations: Registrations are currently closed on this server. However! You can find a different server to make an account on and get access to the very same network from there.
     contact: Contact
     contact_missing: Not set
     contact_unavailable: N/A
@@ -27,7 +27,7 @@ en:
     generic_description: "%{domain} is one server in the network"
     hosted_on: Mastodon hosted on %{domain}
     learn_more: Learn more
-    other_instances: Instance list
+    other_instances: Server list
     privacy_policy: Privacy policy
     source_code: Source code
     status_count_after:
@@ -386,14 +386,14 @@ en:
         desc_html: Modify the look with CSS loaded on every page
         title: Custom CSS
       hero:
-        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to instance thumbnail
+        desc_html: Displayed on the frontpage. At least 600x100px recommended. When not set, falls back to server thumbnail
         title: Hero image
       mascot:
         desc_html: Displayed on multiple pages. At least 293×205px recommended. When not set, falls back to default mascot
         title: Mascot image
       peers_api_enabled:
-        desc_html: Domain names this instance has encountered in the fediverse
-        title: Publish list of discovered instances
+        desc_html: Domain names this server has encountered in the fediverse
+        title: Publish list of discovered servers
       preview_sensitive_media:
         desc_html: Link previews on other websites will display a thumbnail even if the media is marked as sensitive
         title: Show sensitive media in OpenGraph previews
@@ -421,20 +421,20 @@ en:
         title: Show staff badge
       site_description:
         desc_html: Introductory paragraph on the frontpage. Describe what makes this Mastodon server special and anything else important. You can use HTML tags, in particular <code>&lt;a&gt;</code> and <code>&lt;em&gt;</code>.
-        title: Instance description
+        title: Server description
       site_description_extended:
-        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your instance apart. You can use HTML tags
+        desc_html: A good place for your code of conduct, rules, guidelines and other things that set your server apart. You can use HTML tags
         title: Custom extended information
       site_short_description:
-        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph. If empty, defaults to instance description.
-        title: Short instance description
+        desc_html: Displayed in sidebar and meta tags. Describe what Mastodon is and what makes this server special in a single paragraph. If empty, defaults to server description.
+        title: Short server description
       site_terms:
         desc_html: You can write your own privacy policy, terms of service or other legalese. You can use HTML tags
         title: Custom terms of service
-      site_title: Instance name
+      site_title: Server name
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
-        title: Instance thumbnail
+        title: Server thumbnail
       timeline_preview:
         desc_html: Display public timeline on landing page
         title: Timeline preview
@@ -588,6 +588,10 @@ en:
     lists: Tomes
     mutes: You mute
     storage: Media storage
+  featured_tags:
+    add_new: Add new
+    errors:
+      limit: You have already featured the maximum amount of hashtags
   filters:
     contexts:
       home: Home timeline
@@ -628,10 +632,16 @@ en:
       one: Something isn't quite right yet! Please review the error below
       other: Something isn't quite right yet! Please review %{count} errors below
   imports:
+    modes:
+      merge: Merge
+      overwrite: Overwrite
+      merge_long: Keep existing records and add new ones
+      overwrite_long: Replace current records with the new ones
     preface: You can import data that you have exported from another instance, such as a list of your disciples and those who are disciples of you.
     success: Your data was successfully uploaded and will now be processed in due time
     types:
       blocking: Warded list
+      domain_blocking: Domain blocking list
       following: Discipleship list
       muting: Silence hexed list
     upload: Upload
@@ -653,7 +663,7 @@ en:
       one: 1 use
       other: "%{count} uses"
     max_uses_prompt: No limit
-    prompt: Generate and share links with others to grant access to this instance
+    prompt: Generate and share links with others to grant access to this server
     table:
       expires_at: Expires
       uses: Uses
@@ -801,6 +811,7 @@ en:
     development: Development
     edit_profile: Inscribe reading
     export: Data export
+    featured_tags: Featured hashtags
     followers: Authorized followers
     import: Import
     migrate: Account migration
