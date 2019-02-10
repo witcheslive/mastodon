@@ -108,6 +108,22 @@ time, mark, audio, video {
   color: $ui-glitchy-blue;
 }
 
+.drawer__tab, {
+  color: $white;
+}
+
+.column-header__icon {
+  color: $ui-glitchy-pink;
+}
+
+.navigation-bar__profile-edit {
+  color: $white !important;
+}
+
+.muted .status__content p {
+  color: $white !important;
+}
+
 .status__content__spoiler-link {
   color: $inverted-text-color !important;
 }

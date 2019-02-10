@@ -3,3 +3,4 @@ contrast: styles/contrast.scss
 mastodon-light: styles/mastodon-light.scss
 boring-default: styles/application.scss
 glitchy-witchy: styles/glitchy-witchy.scss
+glitchy-witchy-plainer: styles/glitchy-witchy-plainer.scss
