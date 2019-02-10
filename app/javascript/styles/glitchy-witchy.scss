@@ -1,7 +1,6 @@
 // Colors
 $ui-glitchy-bg: #302145;
 $ui-glitchy-bg-light: #2d1558;
-$ui-glitchy-brightest: #f993fa;
 $ui-glitchy-purple: #f993fa;
 $ui-glitchy-blue: #5849ce;
 $ui-glitchy-pink: #ff42a0;
@@ -107,6 +106,10 @@ time, mark, audio, video {
 
 .emoji-mart-anchors {
   color: $ui-glitchy-blue;
+}
+
+.status__content__spoiler-link {
+  color: $inverted-text-color !important;
 }
 
 button.icon-button i.fa-retweet {
