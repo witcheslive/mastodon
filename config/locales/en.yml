@@ -933,6 +933,7 @@ en:
     default: Mastodon
     mastodon-light: Mastodon (light)
     glitchy-witchy: Glitchy Witchy
+    glitchy-witchy-plainer: Glitchy Witchy Chillwave
   time:
     formats:
       default: "%b %d, %Y, %H:%M"
