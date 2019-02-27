@@ -302,6 +302,7 @@ en:
       back_to_account: Back To Account
       title: "%{acct}'s Followers"
     instances:
+      by_domain: Domain
       delivery_available: Delivery is available
       known_accounts:
         one: "%{count} known account"
@@ -929,11 +930,12 @@ en:
       <p>Originally adapted from the <a href="https://github.com/discourse/discourse">Discourse privacy policy</a>.</p>
     title: "%{instance} Terms of Service and Privacy Policy"
   themes:
-    contrast: High contrast
-    default: Mastodon
+    contrast: High contrast, links underlined
+    default: Glitchy Witchy Chillwave
     mastodon-light: Mastodon (light)
     glitchy-witchy: Glitchy Witchy
-    glitchy-witchy-plainer: Glitchy Witchy Chillwave
+    rip-witches: RIP witches.town
+    boring-default: Boring Default Mastodon Theme
   time:
     formats:
       default: "%b %d, %Y, %H:%M"

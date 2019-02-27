@@ -1,6 +1,6 @@
-default: styles/witches-town.scss
+default: styles/glitchy-witchy-plainer.scss
 contrast: styles/contrast.scss
 mastodon-light: styles/mastodon-light.scss
 boring-default: styles/application.scss
+rip-witches: styles/witches-town.scss
 glitchy-witchy: styles/glitchy-witchy.scss
-glitchy-witchy-plainer: styles/glitchy-witchy-plainer.scss
