@@ -7,8 +7,8 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const messages = defineMessages({
-  add_poll: { id: 'poll_button.add_poll', defaultMessage: 'Turn this toot into a poll' },
-  remove_poll: { id: 'poll_button.remove_poll', defaultMessage: 'Remove the poll from this toot' },
+  add_poll: { id: 'poll_button.add_poll', defaultMessage: 'Add a poll' },
+  remove_poll: { id: 'poll_button.remove_poll', defaultMessage: 'Remove poll' },
 });
 
 const iconStyle = {
@@ -22,6 +22,7 @@ class PollButton extends ImmutablePureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,
+    unavailable: PropTypes.bool,
     active: PropTypes.bool,
     onClick: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
@@ -32,7 +33,11 @@ class PollButton extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, active, disabled } = this.props;
+    const { intl, active, unavailable, disabled } = this.props;
+
+    if (unavailable) {
+      return null;
+    }
 
     return (
       <div className='compose-form__poll-button'>

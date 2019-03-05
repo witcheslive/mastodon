@@ -33,8 +33,33 @@
       display: none;
     }
 
+    input[type=text] {
+      display: block;
+      box-sizing: border-box;
+      flex: 1 1 auto;
+      width: 20px;
+      font-size: 16px;
+      color: $inverted-text-color;
+      display: block;
+      outline: 0;
+      font-family: inherit;
+      background: $simple-background-color;
+      border: 1px solid darken($simple-background-color, 14%);
+      border-radius: 4px;
+      padding: 6px 10px;
+
+      &:focus {
+        border-color: $highlight-text-color;
+      }
+    }
+
     &.selectable {
       cursor: pointer;
+    }
+
+    &.editable {
+      display: flex;
+      align-items: center;
     }
   }
 
@@ -45,6 +70,7 @@
     box-sizing: border-box;
     width: 18px;
     height: 18px;
+    flex: 0 0 auto;
     margin-right: 10px;
     top: -1px;
     border-radius: 50%;
@@ -96,5 +122,29 @@
     padding: 0 16px;
     margin-right: 10px;
     font-size: 14px;
+  }
+}
+
+.compose-form__poll-wrapper {
+  border-top: 1px solid darken($simple-background-color, 8%);
+
+  ul {
+    padding: 10px;
+  }
+
+  .poll__footer {
+    border-top: 1px solid darken($simple-background-color, 8%);
+    padding: 10px;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+
+    .poll__text {
+      flex: 0 0 auto;
+      width: calc(100% - (23px + 6px));
+      margin-right: 6px;
+    }
   }
 }
