@@ -12,6 +12,9 @@ const messages = defineMessages({
   add_option: { id: 'compose_form.poll.add_option', defaultMessage: 'Add a choice' },
   remove_option: { id: 'compose_form.poll.remove_option', defaultMessage: 'Remove this choice' },
   poll_duration: { id: 'compose_form.poll.duration', defaultMessage: 'Poll duration' },
+  minutes: { id: 'intervals.full.minutes', defaultMessage: '{number, plural, one {# minute} other {# minutes}}' },
+  hours: { id: 'intervals.full.hours', defaultMessage: '{number, plural, one {# hour} other {# hours}}' },
+  days: { id: 'intervals.full.days', defaultMessage: '{number, plural, one {# day} other {# days}}' },
 });
 
 @injectIntl
@@ -26,11 +29,11 @@ class Option extends React.PureComponent {
     intl: PropTypes.object.isRequired,
   };
 
-  handleOptionTitleChange = (e) => {
+  handleOptionTitleChange = e => {
     this.props.onChange(this.props.index, e.target.value);
   };
 
-  handleOptionRemove = (e) => {
+  handleOptionRemove = () => {
     this.props.onRemove(this.props.index);
   };
 
@@ -45,19 +48,19 @@ class Option extends React.PureComponent {
           <input
             type='text'
             placeholder={intl.formatMessage(messages.option_placeholder, { number: index + 1 })}
+            maxlength={25}
             value={title}
             onChange={this.handleOptionTitleChange}
           />
         </label>
 
-        {index > 1 && (
-          <div className='poll__cancel'>
-            <IconButton title={intl.formatMessage(messages.remove_option)} icon='times' onClick={this.handleOptionRemove} />
-          </div>
-        )}
+        <div className='poll__cancel'>
+          <IconButton disabled={index <= 1} title={intl.formatMessage(messages.remove_option)} icon='times' onClick={this.handleOptionRemove} />
+        </div>
       </li>
     );
   }
+
 }
 
 export default
@@ -79,8 +82,12 @@ class PollForm extends ImmutablePureComponent {
     this.props.onAddOption('');
   };
 
+  handleSelectDuration = e => {
+    this.props.onChangeSettings(e.target.value, this.props.isMultiple);
+  };
+
   render () {
-    const { options, expiresIn, isMultiple, onChangeOption, onRemoveOption } = this.props;
+    const { options, expiresIn, isMultiple, onChangeOption, onRemoveOption, intl } = this.props;
 
     if (!options) {
       return null;
@@ -92,11 +99,21 @@ class PollForm extends ImmutablePureComponent {
           {options.map((title, i) => <Option title={title} key={i} index={i} onChange={onChangeOption} onRemove={onRemoveOption} isPollMultiple={isMultiple} />)}
         </ul>
 
-        {options.size < 4 && (
-          <div className='poll__footer'>
-            <button className='poll__link' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
-          </div>
-        )}
+        <div className='poll__footer'>
+          {options.size < 4 && (
+            <button className='button button-secondary' onClick={this.handleAddOption}><Icon id='plus' /> <FormattedMessage {...messages.add_option} /></button>
+          )}
+
+          <select value={expiresIn} onChange={this.handleSelectDuration}>
+            <option value={300}>{intl.formatMessage(messages.minutes, { number: 5 })}</option>
+            <option value={1800}>{intl.formatMessage(messages.minutes, { number: 30 })}</option>
+            <option value={3600}>{intl.formatMessage(messages.hours, { number: 1 })}</option>
+            <option value={21600}>{intl.formatMessage(messages.hours, { number: 6 })}</option>
+            <option value={86400}>{intl.formatMessage(messages.days, { number: 1 })}</option>
+            <option value={259200}>{intl.formatMessage(messages.days, { number: 3 })}</option>
+            <option value={604800}>{intl.formatMessage(messages.days, { number: 7 })}</option>
+          </select>
+        </div>
       </div>
     );
   }

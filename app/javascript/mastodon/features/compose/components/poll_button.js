@@ -2,9 +2,6 @@ import React from 'react';
 import IconButton from '../../../components/icon_button';
 import PropTypes from 'prop-types';
 import { defineMessages, injectIntl } from 'react-intl';
-import { connect } from 'react-redux';
-import ImmutablePureComponent from 'react-immutable-pure-component';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 
 const messages = defineMessages({
   add_poll: { id: 'poll_button.add_poll', defaultMessage: 'Add a poll' },
@@ -18,7 +15,7 @@ const iconStyle = {
 
 export default
 @injectIntl
-class PollButton extends ImmutablePureComponent {
+class PollButton extends React.PureComponent {
 
   static propTypes = {
     disabled: PropTypes.bool,
@@ -49,7 +46,8 @@ class PollButton extends ImmutablePureComponent {
           className={`compose-form__poll-button-icon ${active ? 'active' : ''}`}
           size={18}
           inverted
-          style={iconStyle} />
+          style={iconStyle}
+        />
       </div>
     );
   }
