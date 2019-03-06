@@ -8,7 +8,7 @@ Doorkeeper.configure do
   end
 
   resource_owner_from_credentials do |_routes|
-    if (Setting.allow_username_login)
+    if (true) #(Setting.allow_username_login)
       if request.params[:username].include?('@')
         user = User.find_by(email: request.params[:username])
       else
