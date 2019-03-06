@@ -11,6 +11,7 @@ module Admin
       site_extended_description
       site_terms
       open_registrations
+      allow_username_login
       closed_registrations_message
       open_deletion
       timeline_preview
@@ -31,6 +32,7 @@ module Admin
 
     BOOLEAN_SETTINGS = %w(
       open_registrations
+      allow_username_login
       open_deletion
       timeline_preview
       show_staff_badge
