@@ -46,6 +46,12 @@
           - else
             %span.pull-right.negative-hint= fa_icon 'times fw'
         %li
+          = link_to t('admin.dashboard.allow_username_login'), edit_admin_settings_path
+          - if @allow_username_login
+            %span.pull-right.positive-hint= fa_icon 'check fw'
+          - else
+            %span.pull-right.negative-hint= fa_icon 'times fw'
+        %li
           = link_to t('admin.dashboard.feature_invites'), edit_admin_settings_path
           - if @invites_enabled
             %span.pull-right.positive-hint= fa_icon 'check fw'

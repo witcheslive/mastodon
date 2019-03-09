@@ -414,6 +414,9 @@ en:
         open:
           desc_html: Allow anyone to create an account
           title: Open registration
+      allow_username_login:
+        desc_html: Allow users to log in by username as well as email address. This is slightly less secure, but allows easier integration with other services, such as XMPP
+        title: Allow login by username
       show_known_fediverse_at_about_page:
         desc_html: When toggled, it will show cants from all the known fediverse on preview. Otherwise it will only show local cants.
         title: Show known fediverse on timeline preview

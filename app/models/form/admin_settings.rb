@@ -46,6 +46,8 @@ class Form::AdminSettings
     :custom_css=,
     :profile_directory,
     :profile_directory=,
+    :allow_username_login,
+    :allow_username_login=,
     to: Setting
   )
 end
