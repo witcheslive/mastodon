@@ -50,12 +50,12 @@ $ui-highlight-color: #A288BD;
   content: "\26e7 666 \26e7";
 }
 
-.account__header__extra__links:nth-child(3) > strong {
+.account__header__extra__links a:nth-child(3) > strong {
   visibility: hidden;
   white-space: nowrap;
 }
 
-.account__header__extra__links:nth-child(3) > strong > span::before {
+.account__header__extra__links a:nth-child(3) > strong > span::before {
   visibility: visible;
   content: "\26e7 666 \26e7";
 }
