@@ -50,6 +50,18 @@ $ui-highlight-color: #A288BD;
   content: "\26e7 666 \26e7";
 }
 
+.account__header__extra__links-bar__tab:nth-child(3) > strong > span,
+.counter:nth-child(3) > a > .counter-number {
+  visibility: hidden;
+  white-space: nowrap;
+}
+
+.account__header__extra__links:nth-child(3) > strong > span::before,
+.counter:nth-child(3) > a > .counter-number::before {
+  visibility: visible;
+  content: "\26e7 666 \26e7";
+}
+
 //pretty scrollbars on firefox
 
 html {
