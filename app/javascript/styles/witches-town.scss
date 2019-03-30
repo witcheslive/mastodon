@@ -53,11 +53,13 @@ $ui-highlight-color: #A288BD;
 .account__header__extra__links a:nth-child(3) > strong {
   visibility: hidden;
   white-space: nowrap;
+  font-size: 0;
 }
 
 .account__header__extra__links a:nth-child(3) > strong > span::before {
   visibility: visible;
-  content: "\26e7 666 \26e7";
+  content: "⛧666⛧";
+  font-size: 14px;
 }
 
 //pretty scrollbars on firefox
