@@ -10,6 +10,7 @@ en:
     api: API
     apps: Mobile apps
     apps_platforms: Use Mastodon from iOS, Android and other platforms
+    i_use_gentoo_btw: Witches.live uses Our Dark Lady's One True GNU/Linux, Gentoo
     browse_directory: Browse a profile directory and filter by interests
     browse_public_posts: Browse a live stream of public posts on Mastodon
     contact: Contact
@@ -23,6 +24,7 @@ en:
     federation_hint_html: With an account on %{instance} you'll be able to follow people on any Mastodon server and beyond.
     generic_description: "%{domain} is one server in the network"
     get_apps: Try a mobile app
+    gentoo_btw: BTW, we run Gentoo
     hosted_on: Mastodon hosted on %{domain}
     learn_more: Learn more
     privacy_policy: Privacy policy

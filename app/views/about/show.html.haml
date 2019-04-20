@@ -43,6 +43,13 @@
               = fa_icon 'tablet fw'
               = t('about.get_apps')
               %small= t('about.apps_platforms')
+        
+        .directory__tag
+          = link_to 'https://witches.live', target: '_blank', rel: 'noopener' do
+            %h4
+              = fa_icon 'hat-wizard fw'
+              = t('about.gentoo_btw')
+              %small= t('about.i_use_gentoo_btw')
 
     .landing__grid__column.landing__grid__column-login
       .box-widget
