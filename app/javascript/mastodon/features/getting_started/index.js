@@ -171,7 +171,7 @@ class GettingStarted extends ImmutablePureComponent {
             <p>
               <FormattedMessage
                 id='getting_started.open_source_notice'
-                defaultMessage='Mastodon is open source software licenced under the AGPL. You can contribute or report issues on GitHub at {github}. BTW, witches.live runs on Gentoo. You can find our Mastodon fork with our customizations on Github at {witchesrepo}.'
+                defaultMessage='Mastodon is open source software licenced under the AGPL. You can contribute or report issues on GitHub at {github}. BTW, witches.live runs on Gentoo. You can find our Mastodon fork with our customizations on GitHub at {witchesrepo}.'
                 values={{ 
                   github: <span><a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> (v{version})</span>,
                   witchesrepo: <span><a href='https://github.com/witcheslive/mastodon' rel='noopener' target='_blank'>witcheslive/mastodon</a></span>
