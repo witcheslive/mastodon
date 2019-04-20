@@ -58,3 +58,7 @@ yarn-debug.log
 # Ignore Docker option files
 docker-compose.override.yml
 
+sidekiq.conf
+streaming.pid
+web.pid
+worker.pid
