@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { me, invitesEnabled, version, profile_directory } from '../../initial_state';
+import { me, invitesEnabled, version, profile_directory, repository, source_url } from '../../initial_state';
 import { fetchFollowRequests } from '../../actions/accounts';
 import { List as ImmutableList } from 'immutable';
 import { Link } from 'react-router-dom';
@@ -173,7 +173,7 @@ class GettingStarted extends ImmutablePureComponent {
                 id='getting_started.open_source_notice'
                 defaultMessage='Mastodon is open source software licenced under the AGPL. You can contribute or report issues on GitHub at {github}. BTW, witches.live runs on Gentoo. You can find our Mastodon fork with our customizations on GitHub at {witchesrepo}.'
                 values={{ 
-                  github: <span><a href='https://github.com/tootsuite/mastodon' rel='noopener' target='_blank'>tootsuite/mastodon</a> (v{version})</span>,
+                  github: <span><a href={source_url} rel='noopener' target='_blank'>{repository}</a> (v{version})</span>,
                   witchesrepo: <span><a href='https://github.com/witcheslive/mastodon' rel='noopener' target='_blank'>witcheslive/mastodon</a></span>
                 }}
               />
