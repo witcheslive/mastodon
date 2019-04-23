@@ -63,6 +63,13 @@ describe UserSettingsDecorator do
       expect(user.settings['auto_play_gif']).to eq false
     end
 
+    it 'updates the user settings value for showing rich formatting' do
+      values = { 'setting_show_formatting' => '0' }
+
+      settings.update(values)
+      expect(user.settings['show_formatting']).to eq false
+    end
+
     it 'updates the user settings value for system font in UI' do
       values = { 'setting_system_font_ui' => '0' }
 

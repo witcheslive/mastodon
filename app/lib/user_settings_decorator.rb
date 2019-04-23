@@ -67,9 +67,12 @@ class UserSettingsDecorator
     boolean_cast_setting 'setting_system_font_ui'
   end
 
-  def auto_play_gif_preference
-    boolean_cast_setting 'setting_auto_play_gif'
+  def show_formatting_preference
+    boolean_cast_setting 'setting_show_formatting'
   end
+
+  def auto_play_gif_preference
+    boolean_cast_setting 'setting_'
 
   def display_media_preference
     settings['setting_display_media']

@@ -28,6 +28,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:boost_modal]     = object.current_account.user.setting_boost_modal
       store[:delete_modal]    = object.current_account.user.setting_delete_modal
       store[:auto_play_gif]   = object.current_account.user.setting_auto_play_gif
+      store[:show_formatting] = object.current_account.user.setting_show_formatting
       store[:display_media]   = object.current_account.user.setting_display_media
       store[:expand_spoilers] = object.current_account.user.setting_expand_spoilers
       store[:reduce_motion]   = object.current_account.user.setting_reduce_motion
