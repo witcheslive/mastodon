@@ -681,30 +681,10 @@
   h3,
   h4,
   h5 {
-    margin-top: 20px;
     margin-bottom: 20px;
   }
 
-  h1,
-  h2 {
-    font-weight: 700;
-    font-size: 18px;
-  }
-
-  h2 {
-    font-size: 16px;
-  }
-
-  h3,
-  h4,
-  h5 {
-    font-weight: 500;
-  }
-
   blockquote {
-    padding-left: 10px;
-    border-left: 3px solid $darker-text-color;
-    color: $darker-text-color;
     white-space: normal;
 
     p:last-child {
@@ -712,31 +692,157 @@
     }
   }
 
-  b,
-  strong {
-    font-weight: 700;
-  }
-
-  em,
-  i {
-    font-style: italic;
-  }
-
   ul,
   ol {
-    margin-left: 1em;
-
     p {
-      margin: 0;
+      margin-bottom: 0;
     }
   }
 
-  ul {
-    list-style-type: disc;
+  &:not(.rich-text) {
+    del {
+      text-decoration: none;
+
+      &::before,
+      &::after {
+        content: '~~';
+      }
+    }
+
+    code {
+      font-family: inherit;
+    }
+
+    u {
+      text-decoration: none;
+
+      &::before,
+      &::after {
+        content: '__';
+      }
+    }
+
+    h1::before {
+      content: '# ';
+    }
+
+    h2::before {
+      content: '## ';
+    }
+
+    h3::before {
+      content: '### ';
+    }
+
+    h4::before {
+      content: '#### ';
+    }
+
+    h5::before {
+      content: '##### ';
+    }
+
+    b,
+    strong {
+      &::before,
+      &::after {
+        content: '**';
+      }
+    }
+
+    em,
+    i {
+      &::before,
+      &::after {
+        content: '*';
+      }
+    }
   }
 
-  ol {
-    list-style-type: decimal;
+  &:not(.rich-blocks) {
+    blockquote {
+      position: relative;
+      padding-left: 1em;
+      overflow: hidden;
+    }
+
+    blockquote::before {
+      position: absolute;
+      content: '>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a>\a';
+      white-space: pre-wrap;
+      left: 0;
+      top: 0;
+    }
+
+    li::before {
+      position: absolute;
+      content: '*';
+      left: 0;
+      top: 0;
+    }
+
+    li {
+      position: relative;
+      padding-left: 1em;
+    }
+  }
+
+  &.rich-text {
+    h1,
+    h2 {
+      font-weight: 700;
+    }
+
+    h3,
+    h4,
+    h5 {
+      font-weight: 500;
+    }
+
+    b,
+    strong {
+      font-weight: 700;
+    }
+
+    em,
+    i {
+      font-style: italic;
+    }
+
+    sub {
+      font-size: smaller;
+      text-align: sub;
+    }
+  }
+
+  &.rich-blocks {
+    h1,
+    h2 {
+      font-size: 18px;
+    }
+
+    h2 {
+      font-size: 16px;
+    }
+
+    blockquote {
+      padding-left: 10px;
+      border-left: 3px solid $darker-text-color;
+      color: $darker-text-color;
+    }
+
+    ul,
+    ol {
+      margin-left: 1em;
+    }
+
+    ul {
+      list-style-type: disc;
+    }
+
+    ol {
+      list-style-type: decimal;
+    }
   }
 
   a {
