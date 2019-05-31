@@ -33,6 +33,7 @@ defaults: &defaults
   theme: 'default'
   aggregate_reblogs: true
   strip_formatting: 'none'
+  advanced_layout: false
   notification_emails:
     follow: false
     reblog: false
