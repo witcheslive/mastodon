@@ -8,7 +8,7 @@ const LinkFooter = ({ withHotkeys }) => (
   <div className='getting-started__footer'>
     <ul>
       {invitesEnabled && <li><a href='/invites' target='_blank'><FormattedMessage id='getting_started.invite' defaultMessage='Invite people' /></a> · </li>}
-      {withHotkeys && <li><Link to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link> · </li>}
+      {multiColumn && <li><Link to='/keyboard-shortcuts'><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></Link> · </li>}
       <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>
       <li><a href='/about/more' target='_blank'><FormattedMessage id='navigation_bar.info' defaultMessage='About this server' /></a> · </li>
       <li><a href='https://joinmastodon.org/apps' target='_blank'><FormattedMessage id='navigation_bar.apps' defaultMessage='Mobile apps' /></a> · </li>
@@ -21,8 +21,11 @@ const LinkFooter = ({ withHotkeys }) => (
     <p>
       <FormattedMessage
         id='getting_started.open_source_notice'
-        defaultMessage='Mastodon is open source software. You can contribute or report issues on GitHub at {github}.'
-        values={{ github: <span><a href={source_url} rel='noopener' target='_blank'>{repository}</a> (v{version})</span> }}
+        defaultMessage='Mastodon is open source software licenced under the AGPL. You can contribute or report issues on GitHub at {github}. BTW, witches.live runs on Gentoo. You can find our Mastodon fork with our customizations on GitHub at {witchesrepo}.'
+        values={{
+          github: <span><a href={source_url} rel='noopener' target='_blank'>{repository}</a> (v{version})</span>,
+          witchesrepo: <span><a href='https://github.com/witcheslive/mastodon' rel='noopener' target='_blank'>witcheslive/mastodon</a></span>
+        }}
       />
     </p>
   </div>
