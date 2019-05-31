@@ -75,7 +75,7 @@ class GettingStarted extends ImmutablePureComponent {
     unreadNotifications: PropTypes.number,
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const { myAccount, fetchFollowRequests, multiColumn } = this.props;
 
     if (!multiColumn && window.innerWidth >= NAVIGATION_PANEL_BREAKPOINT) {
@@ -88,7 +88,7 @@ class GettingStarted extends ImmutablePureComponent {
     }
   }
 
-  render () {
+  render() {
     const { intl, myAccount, multiColumn, unreadFollowRequests } = this.props;
 
     const navItems = [];
@@ -102,7 +102,7 @@ class GettingStarted extends ImmutablePureComponent {
         <ColumnLink key={i++} icon='globe' text={intl.formatMessage(messages.public_timeline)} to='/timelines/public' />,
       );
 
-      height += 34 + 48*2;
+      height += 34 + 48 * 2;
 
       if (profile_directory) {
         navItems.push(
@@ -131,7 +131,7 @@ class GettingStarted extends ImmutablePureComponent {
       <ColumnLink key={i++} icon='list-ul' text={intl.formatMessage(messages.lists)} to='/lists' />
     );
 
-    height += 48*3;
+    height += 48 * 3;
 
     if (myAccount.get('locked')) {
       navItems.push(<ColumnLink key={i++} icon='user-plus' text={intl.formatMessage(messages.follow_requests)} badge={badgeDisplay(unreadFollowRequests, 40)} to='/follow_requests' />);
@@ -165,7 +165,7 @@ class GettingStarted extends ImmutablePureComponent {
           </div>
 
           {!multiColumn && <div className='flex-spacer' />}
-          
+
           <LinkFooter withHotkeys={multiColumn} />
         </div>
       </Column>
