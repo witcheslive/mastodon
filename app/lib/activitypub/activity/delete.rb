@@ -32,8 +32,9 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
     return if @status.nil?
 
     if @status.public_visibility? || @status.unlisted_visibility?
-      forward_for_reply
-      forward_for_reblogs
+      # don't forward deleted statuses to avoid sidekiq backup
+      # forward_for_reply
+      # forward_for_reblogs
     end
 
     delete_now!
