@@ -21,5 +21,6 @@ export const profile_directory = getMeta('profile_directory');
 export const isStaff = getMeta('is_staff');
 export const stripFormatting = getMeta('strip_formatting');
 export const forceSingleColumn = !getMeta('advanced_layout');
+export const defaultContentType = getMeta('default_content_type');
 
 export default initialState;

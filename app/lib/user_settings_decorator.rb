@@ -34,6 +34,7 @@ class UserSettingsDecorator
     user.settings['aggregate_reblogs']   = aggregate_reblogs_preference if change?('setting_aggregate_reblogs')
     user.settings['show_application']    = show_application_preference if change?('setting_show_application')
     user.settings['strip_formatting']    = strip_formatting_preference if change?('setting_strip_formatting')
+    user.settings['default_content_type']= default_content_type_preference if change?('setting_default_content_type')
     user.settings['advanced_layout']     = advanced_layout_preference if change?('setting_advanced_layout')
   end
 
@@ -115,6 +116,10 @@ class UserSettingsDecorator
   
   def advanced_layout_preference
     boolean_cast_setting 'setting_advanced_layout'
+  end
+
+  def default_content_type_preference
+    settings['setting_default_content_type']
   end
 
   def boolean_cast_setting(key)

@@ -34,6 +34,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:advanced_layout] = object.current_account.user.setting_advanced_layout
       store[:is_staff]         = object.current_account.user.staff?
       store[:strip_formatting] = object.current_account.user.setting_strip_formatting
+      store[:default_content_type] = object.current_account.user.setting_default_content_type
     end
 
     store

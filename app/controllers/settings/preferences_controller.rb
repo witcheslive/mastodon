@@ -53,6 +53,7 @@ class Settings::PreferencesController < Settings::BaseController
       :setting_hide_network,
       :setting_aggregate_reblogs,
       :setting_show_application,
+      :setting_default_content_type,
       :setting_strip_formatting,
       :setting_advanced_layout,
       notification_emails: %i(follow follow_request reblog favourite mention digest report pending_account),
