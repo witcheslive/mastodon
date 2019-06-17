@@ -212,7 +212,7 @@ class ContentTypeDropdown extends React.PureComponent {
     const { intl: { formatMessage } } = this.props;
 
     this.options = [
-      { icon: 'align-left', value: 'text/plain', text: formatMessage(messages.plain_short), meta: formatMessage(messages.plain_long) },
+      { icon: 'file-text-o', value: 'text/plain', text: formatMessage(messages.plain_short), meta: formatMessage(messages.plain_long) },
       { icon: 'code', value: 'text/html', text: formatMessage(messages.html_short), meta: formatMessage(messages.html_long) },
       { icon: 'arrow-circle-down', value: 'text/markdown', text: formatMessage(messages.markdown_short), meta: formatMessage(messages.markdown_long) },
     ];
