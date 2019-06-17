@@ -1,10 +1,48 @@
 # frozen_string_literal: true
+require 'date'
 
 class InitialStateSerializer < ActiveModel::Serializer
   attributes :meta, :compose, :accounts,
              :media_attachments, :settings
 
   has_one :push_subscription, serializer: REST::WebPushSubscriptionSerializer
+
+  def julday(year, month, day)
+    if year < 0 then
+      year = year + 1
+    end
+    jy = Integer(year)
+    jm = Integer(month) + 1
+    if month <= 2 then
+      jy = jy - 1
+      jm = jm + 12
+    end
+    jul = (365.25 * jy).floor + (30.6001 * jm).floor + Integer(day) + 1720995
+    if day + 31*(month + 12*year) >= (15+31 * (10 + 12*1582)) then
+      ja = (0.01 * jy).floor
+      jul = jul + 2 - ja + (0.25 * ja).floor
+    end
+    return jul
+  end
+
+  def phaseday(year, month, day)
+    n = (12.37 * (year - 1900 + (( 1.0 * month - 0.5) / 12.0))).floor
+    rad = 3.14159265/180.0
+    t = n / 1236.85;
+    t2 = t * t
+    as = 359.2242 + 29.105356 * n
+    am = 306.0253 + 385.816918 * n + 0.010730 * t2
+    xtra = 0.75933 + 1.53058868 * n + ((1.178e-4) - (1.55e-7) * t) * t2
+    xtra = xtra + (0.1734 - 3.93e-4 * t) * Math.sin(rad * as) - 0.4068 * Math.sin(rad * am)
+    if xtra > 0.0 then
+      i = xtra.floor
+    else
+      i = (xtra - 1.0).ceil
+    end
+    j1 = julday(year,month,day);
+    jd = (2415020 + 28 * n) + i;
+    return (j1 - jd + 30) % 30;
+  end
 
   def meta
     store = {
@@ -35,6 +73,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:is_staff]         = object.current_account.user.staff?
       store[:strip_formatting] = object.current_account.user.setting_strip_formatting
       store[:default_content_type] = object.current_account.user.setting_default_content_type
+      store[:moon_phase]        = phaseday(Integer(Date.today.strftime("%Y")), Integer(Date.today.strftime("%m")), Integer(Date.today.strftime("%d")))
     end
 
     store

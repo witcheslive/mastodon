@@ -619,7 +619,7 @@
 
   .compose-form__publish {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     min-width: 0;
     flex: 0 0 auto;
 
@@ -628,6 +628,19 @@
       padding-top: 10px;
     }
   }
+}
+
+.compose-form__moon-phase {
+  padding-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+.moon-phase-img {
+  height: 36px;
+  line-height: 36px;
 }
 
 .no-reduce-motion .spoiler-input {

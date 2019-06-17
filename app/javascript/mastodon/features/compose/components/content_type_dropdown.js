@@ -222,8 +222,6 @@ class ContentTypeDropdown extends React.PureComponent {
     const { value, intl } = this.props;
     const { open, placement } = this.state;
 
-    console.log(this.props);
-
     const valueOption = this.options.find(item => item.value === value);
 
     return (

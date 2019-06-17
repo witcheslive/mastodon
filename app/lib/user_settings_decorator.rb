@@ -36,6 +36,7 @@ class UserSettingsDecorator
     user.settings['strip_formatting']    = strip_formatting_preference if change?('setting_strip_formatting')
     user.settings['default_content_type']= default_content_type_preference if change?('setting_default_content_type')
     user.settings['advanced_layout']     = advanced_layout_preference if change?('setting_advanced_layout')
+    user.settings['moon_phase']          = moon_phase_preference if change?('setting_moon_phase')
   end
 
   def merged_notification_emails
@@ -120,6 +121,10 @@ class UserSettingsDecorator
 
   def default_content_type_preference
     settings['setting_default_content_type']
+  end
+
+  def moon_phase_preference
+    settings['setting_moon_phase']
   end
 
   def boolean_cast_setting(key)
