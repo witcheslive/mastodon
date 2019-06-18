@@ -15,10 +15,10 @@ const mapStateToProps = state => ({
     'waning_crescent_moon', 'waning_crescent_moon', 'waning_crescent_moon', 'waning_crescent_moon', 'waning_crescent_moon', 'waning_crescent_moon',
   ],
   phase_names: [
-    'New Moon', 'Waxing Crescent Moon', 'Waxing Crescent Moon', 'Waxing Crescent Moon', 'Waxing Crescent Moon', 'Waxing Crescent Moon', 'Waxing Crescent Moon', 'Waxing Crescent Moon', 'first_quarter_moon',
-    'Waxing Gibbous Moon', 'Waxing Gibbous Moon', 'Waxing Gibbous Moon', 'Waxing Gibbous Moon', 'Waxing Gibbous Moon', 'Waxing Gibbous Moon', 'Full Moon',
-    'Waning Gibbous Moon', 'Waning Gibbous Moon', 'Waning Gibbous Moon', 'Waning Gibbous Moon', 'Waning Gibbous Moon', 'Waning Gibbous Moon', 'Waning Gibbous Moon', 'Last Quarter Moon',
-    'Waning Crescent Moon', 'Waning Crescent Moon', 'Waning Crescent Moon', 'Waning Crescent Moon', 'Waning Crescent Moon', 'Waning Crescent Moon',
+    'New 🌑', 'Waxing Crescent 🌒', 'Waxing Crescent 🌒', 'Waxing Crescent 🌒', 'Waxing Crescent 🌒', 'Waxing Crescent 🌒', 'Waxing Crescent 🌒', 'Waxing Crescent 🌒', 'First Quarter 🌓',
+    'Waxing Gibbous 🌔', 'Waxing Gibbous 🌔', 'Waxing Gibbous 🌔', 'Waxing Gibbous 🌔', 'Waxing Gibbous 🌔', 'Waxing Gibbous 🌔', 'FULL 🌕',
+    'Waning Gibbous 🌖', 'Waning Gibbous 🌖', 'Waning Gibbous 🌖', 'Waning Gibbous 🌖', 'Waning Gibbous 🌖', 'Waning Gibbous 🌖', 'Waning Gibbous 🌖', 'Last Quarter 🌗',
+    'Waning Crescent 🌘', 'Waning Crescent 🌘', 'Waning Crescent 🌘', 'Waning Crescent 🌘', 'Waning Crescent 🌘', 'Waning Crescent 🌘',
   ],
   phase_emoji_svg: [
     '/emoji/1f311.svg', '/emoji/1f312.svg', '/emoji/1f312.svg', '/emoji/1f312.svg', '/emoji/1f312.svg', '/emoji/1f312.svg', '/emoji/1f312.svg', '/emoji/1f312.svg', '/emoji/1f313.svg',
