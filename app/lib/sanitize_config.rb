@@ -57,21 +57,28 @@ class Sanitize
 
     if moonphase == 15 then
       phaseelements = %w(p br span a abbr del pre blockquote code b strong u sub i em h1 h2 h3 h4 h5 ul ol li marquee font)
+      phaseattributes = {
+        'a'          => %w(href rel class title),
+        'span'       => %w(class),
+        'abbr'       => %w(title),
+        'blockquote' => %w(cite),
+        'font'       => %w(color),
+      }
     else
       phaseelements = %w(p br span a abbr del pre blockquote code b strong u sub i em h1 h2 h3 h4 h5 ul ol li)
+      phaseattributes = {
+        'a'          => %w(href rel class title),
+        'span'       => %w(class),
+        'abbr'       => %w(title),
+        'blockquote' => %w(cite),
+      }
     end
 
 
     MASTODON_STRICT ||= freeze_config(
       elements: phaseelements,
 
-      attributes: {
-        'a'          => %w(href rel class title),
-        'span'       => %w(class),
-        'abbr'       => %w(title),
-        'blockquote' => %w(cite),
-        'font'       => %w(color),
-      },
+      attributes: phaseattributes,
 
       add_attributes: {
         'a' => {
