@@ -94,6 +94,7 @@ class Sanitize
 
       transformers: [
         CLASS_WHITELIST_TRANSFORMER,
+        UNSUPPORTED_ELEMENTS_TRANSFORMER,
       ]
     )
 
