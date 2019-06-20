@@ -72,7 +72,6 @@ cy:
       index:
         application: Rhaglen
         created_at: Awdurdodedig
-        date_format: "%Y-%m-%d% %H:%M:%S"
         scopes: Rhinweddau
         title: Eich rhaglenni awdurdodedig
     errors:
@@ -115,7 +114,7 @@ cy:
         title: Mae awdurdodiad OAuth yn ofynnol
     scopes:
       follow: addasu perthnasau cyfrif
-      push: derbyn eich hysbysiadau gwthiadwy
+      push: derbyn eich hysbysiadau PUSH
       read: darllen holl ddata eich cyfrif
       read:accounts: gweld gwybodaeth y cyfrif
       read:blocks: gweld eich blociau

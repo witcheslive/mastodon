@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'mime/types/columnar'
+require 'mime/types'
 
 module Attachmentable
   extend ActiveSupport::Concern

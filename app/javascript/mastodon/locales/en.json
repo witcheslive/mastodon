@@ -400,7 +400,7 @@
   "trends.count_by_accounts": "{count} {rawCount, plural, one {person} other {people}} talking",
   "ui.beforeunload": "Your draft will be lost if you leave Mastodon.",
   "upload_area.title": "Drag & drop to upload",
-  "upload_button.label": "Add enchanted parchment ({formats})",
+  "upload_button.label": "Add enchanted parchment (JPEG, PNG, GIF, WebM, MP4, MOV)",
   "upload_error.limit": "The familiars are unable to courier that much.",
   "upload_error.poll": "File upload not allowed with polls.",
   "upload_form.description": "Describe for the visually impaired",

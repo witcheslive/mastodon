@@ -18,9 +18,7 @@ Bug reports and feature suggestions can be submitted to [GitHub Issues](https://
 
 ## Translations
 
-You can submit translations via [Crowdin](https://crowdin.com/project/mastodon). They are periodically merged into the codebase.
-
-[![Crowdin](https://d322cqt584bo4o.cloudfront.net/mastodon/localized.svg)][crowdin]
+You can submit translations via pull request.
 
 ## Pull requests
 

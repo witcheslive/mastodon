@@ -106,8 +106,6 @@ class Account < ApplicationRecord
            :confirmed?,
            :approved?,
            :pending?,
-           :disabled?,
-           :role,
            :admin?,
            :moderator?,
            :staff?,
