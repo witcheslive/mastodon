@@ -74,6 +74,22 @@ class Sanitize
       }
     end
 
+    UNSUPPORTED_ELEMENTS_TRANSFORMER = lambda do |env|
+      return unless %w(h1 h2 h3 h4 h5 h6 blockquote pre ul ol li).include?(env[:node_name])
+
+      case env[:node_name]
+      when 'li'
+        env[:node].traverse do |node|
+          node.add_next_sibling('<br>') if node.next_sibling
+          node.replace(node.children) unless node.text?
+        end
+      else
+        env[:node].name = 'p'
+      end
+    end
+
+
+
 
     MASTODON_STRICT ||= freeze_config(
       elements: phaseelements,
