@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
 import Button from '../../../components/button'
@@ -267,22 +267,7 @@ function Firework(
 
 const canvasStyle = {
         position: 'fixed',
-        margin:0,
-        padding:0,
         pointerEvents: 'none',
-        float: 'left',
-        zIndex:100
-}
-
-function Canvas({ id }){
-        const cnv = <canvas
-                width={window.innerWidth}
-                height={window.innerHeight}
-                id={id}
-                style={canvasStyle}></canvas>
-        return (
-                cnv
-        )
 }
 
 export default function Fireworks(props){
