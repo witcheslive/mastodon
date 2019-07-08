@@ -3,9 +3,9 @@ require 'date'
 
 class Sanitize
   module Config
-    year  = Integer(Date.today.strftime("%Y"))
-    month = Integer(Date.today.strftime("%m"))
-    day   = Integer(Date.today.strftime("%d"))
+    year  = Date.today.strftime("%Y").to_i
+    month = Date.today.strftime("%m").to_i
+    day   = Date.today.strftime("%d").to_i
 
     if year < 0 then
       year = year + 1
