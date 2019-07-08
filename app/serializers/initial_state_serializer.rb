@@ -11,13 +11,13 @@ class InitialStateSerializer < ActiveModel::Serializer
     if year < 0 then
       year = year + 1
     end
-    jy = Integer(year)
-    jm = Integer(month) + 1
+    jy = year.to_i
+    jm = month.to_i + 1
     if month <= 2 then
       jy = jy - 1
       jm = jm + 12
     end
-    jul = (365.25 * jy).floor + (30.6001 * jm).floor + Integer(day) + 1720995
+    jul = (365.25 * jy).floor + (30.6001 * jm).floor + day.to_i + 1720995
     if day + 31*(month + 12*year) >= (15+31 * (10 + 12*1582)) then
       ja = (0.01 * jy).floor
       jul = jul + 2 - ja + (0.25 * ja).floor
@@ -73,7 +73,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:is_staff]         = object.current_account.user.staff?
       store[:strip_formatting] = object.current_account.user.setting_strip_formatting
       store[:default_content_type] = object.current_account.user.setting_default_content_type
-      store[:moon_phase]        = phaseday(Integer(Date.today.strftime("%Y")), Integer(Date.today.strftime("%m")), Integer(Date.today.strftime("%d")))
+      store[:moon_phase]        = phaseday(Date.today.strftime("%Y").to_i, Date.today.strftime("%m").to_i, Date.today.strftime("%d").to_i)
     end
 
     store

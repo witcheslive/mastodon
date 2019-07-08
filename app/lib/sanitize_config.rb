@@ -10,13 +10,13 @@ class Sanitize
     if year < 0 then
       year = year + 1
     end
-    jy = Integer(year)
-    jm = Integer(month) + 1
+    jy = year.to_i
+    jm = month.to_i + 1
     if month <= 2 then
       jy = jy - 1
       jm = jm + 12
     end
-    jul = (365.25 * jy).floor + (30.6001 * jm).floor + Integer(day) + 1720995
+    jul = (365.25 * jy).floor + (30.6001 * jm).floor + day.to_i + 1720995
     if day + 31*(month + 12*year) >= (15+31 * (10 + 12*1582)) then
       ja = (0.01 * jy).floor
       jul = jul + 2 - ja + (0.25 * ja).floor
