@@ -42,7 +42,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
     resolve_thread(@status)
     fetch_replies(@status)
     distribute(@status)
-    forward_for_reply if @status.public_visibility? || @status.unlisted_visibility?
+    forward_for_reply if @status.distributable?
   end
 
   def find_existing_status
@@ -370,7 +370,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
   end
 
   def unsupported_media_type?(mime_type)
-    mime_type.present? && !(MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES).include?(mime_type)
+    mime_type.present? && !MediaAttachment.supported_mime_types.include?(mime_type)
   end
 
   def supported_blurhash?(blurhash)
@@ -380,7 +380,7 @@ class ActivityPub::Activity::Create < ActivityPub::Activity
 
   def skip_download?
     return @skip_download if defined?(@skip_download)
-    @skip_download ||= DomainBlock.find_by(domain: @account.domain)&.reject_media?
+    @skip_download ||= DomainBlock.reject_media?(@account.domain)
   end
 
   def reply_to_local?

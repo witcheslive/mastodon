@@ -37,6 +37,7 @@ class UserSettingsDecorator
     user.settings['default_content_type']= default_content_type_preference if change?('setting_default_content_type')
     user.settings['advanced_layout']     = advanced_layout_preference if change?('setting_advanced_layout')
     user.settings['moon_phase']          = moon_phase_preference if change?('setting_moon_phase')
+    user.settings['use_blurhash']        = use_blurhash_preference if change?('setting_use_blurhash')
   end
 
   def merged_notification_emails
@@ -125,6 +126,10 @@ class UserSettingsDecorator
 
   def moon_phase_preference
     settings['setting_moon_phase']
+  end
+  
+  def use_blurhash_preference
+    boolean_cast_setting 'setting_use_blurhash'
   end
 
   def boolean_cast_setting(key)

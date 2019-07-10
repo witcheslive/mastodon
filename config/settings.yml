@@ -34,6 +34,7 @@ defaults: &defaults
   aggregate_reblogs: true
   strip_formatting: 'none'
   advanced_layout: false
+  use_blurhash: true
   notification_emails:
     follow: false
     reblog: false

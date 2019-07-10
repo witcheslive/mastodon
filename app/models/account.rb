@@ -98,6 +98,7 @@ class Account < ApplicationRecord
   scope :tagged_with, ->(tag) { joins(:accounts_tags).where(accounts_tags: { tag_id: tag }) }
   scope :by_recent_status, -> { order(Arel.sql('(case when account_stats.last_status_at is null then 1 else 0 end) asc, account_stats.last_status_at desc')) }
   scope :popular, -> { order('account_stats.followers_count desc') }
+  scope :by_domain_and_subdomains, ->(domain) { where(domain: domain).or(where(arel_table[:domain].matches('%.' + domain))) }
 
   delegate :email,
            :unconfirmed_email,
@@ -163,8 +164,7 @@ class Account < ApplicationRecord
   end
 
   def refresh!
-    return if local?
-    ResolveAccountService.new.call(acct)
+    ResolveAccountService.new.call(acct) unless local?
   end
 
   def silenced?

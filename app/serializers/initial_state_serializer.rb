@@ -74,6 +74,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:strip_formatting] = object.current_account.user.setting_strip_formatting
       store[:default_content_type] = object.current_account.user.setting_default_content_type
       store[:moon_phase]        = phaseday(Date.today.strftime("%Y").to_i, Date.today.strftime("%m").to_i, Date.today.strftime("%d").to_i)
+      store[:use_blurhash]    = object.current_account.user.setting_use_blurhash
     end
 
     store
@@ -101,7 +102,7 @@ class InitialStateSerializer < ActiveModel::Serializer
   end
 
   def media_attachments
-    { accept_content_types: MediaAttachment::IMAGE_FILE_EXTENSIONS + MediaAttachment::VIDEO_FILE_EXTENSIONS + MediaAttachment::AUDIO_FILE_EXTENSIONS + MediaAttachment::IMAGE_MIME_TYPES + MediaAttachment::VIDEO_MIME_TYPES + MediaAttachment::AUDIO_MIME_TYPES }
+    { accept_content_types: MediaAttachment.supported_file_extensions + MediaAttachment.supported_mime_types }
   end
 
   private

@@ -45,12 +45,6 @@ Rails.application.routes.draw do
   get '/authorize_follow', to: redirect { |_, request| "/authorize_interaction?#{request.params.to_query}" }
 
   resources :accounts, path: 'users', only: [:show], param: :username do
-    resources :stream_entries, path: 'updates', only: [:show] do
-      member do
-        get :embed
-      end
-    end
-
     get :remote_follow,  to: 'remote_follow#new'
     post :remote_follow, to: 'remote_follow#create'
 
@@ -58,8 +52,9 @@ Rails.application.routes.draw do
       member do
         get :activity
         get :embed
-        get :replies
       end
+
+      resources :replies, only: [:index], module: :activitypub
     end
 
     resources :followers, only: [:index], controller: :follower_accounts
@@ -146,15 +141,12 @@ Rails.application.routes.draw do
   get '/public', to: 'public_timelines#show', as: :public_timeline
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
-  # Remote follow
-  resource :remote_unfollow, only: [:create]
   resource :authorize_interaction, only: [:show, :create]
   resource :share, only: [:show, :create]
 
   namespace :admin do
     get '/dashboard', to: 'dashboard#index'
 
-    resources :subscriptions, only: [:index]
     resources :domain_blocks, only: [:new, :create, :show, :destroy]
     resources :email_domain_blocks, only: [:index, :new, :create, :destroy]
     resources :action_logs, only: [:index]
@@ -191,8 +183,6 @@ Rails.application.routes.draw do
 
     resources :accounts, only: [:index, :show] do
       member do
-        post :subscribe
-        post :unsubscribe
         post :enable
         post :unsilence
         post :unsuspend
@@ -257,16 +247,6 @@ Rails.application.routes.draw do
   get '/admin', to: redirect('/admin/dashboard', status: 302)
 
   namespace :api do
-    # PubSubHubbub outgoing subscriptions
-    resources :subscriptions, only: [:show]
-    post '/subscriptions/:id', to: 'subscriptions#update'
-
-    # PubSubHubbub incoming subscriptions
-    post '/push', to: 'push#update', as: :push
-
-    # Salmon
-    post '/salmon/:id', to: 'salmon#update', as: :salmon
-
     # OEmbed
     get '/oembed', to: 'oembed#show', as: :oembed
 
@@ -294,12 +274,10 @@ Rails.application.routes.draw do
 
         member do
           get :context
-          get :card
         end
       end
 
       namespace :timelines do
-        resource :direct, only: :show, controller: :direct
         resource :home, only: :show, controller: :home
         resource :public, only: :show, controller: :public
         resources :tag, only: :show
@@ -320,7 +298,6 @@ Rails.application.routes.draw do
 
       get '/search', to: 'search#index', as: :search
 
-      resources :follows,      only: [:create]
       resources :media,        only: [:create, :update]
       resources :blocks,       only: [:index]
       resources :mutes,        only: [:index]
@@ -352,7 +329,6 @@ Rails.application.routes.draw do
       resources :notifications, only: [:index, :show] do
         collection do
           post :clear
-          post :dismiss # Deprecated
         end
 
         member do

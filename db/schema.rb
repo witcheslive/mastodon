@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_29_143559) do
+ActiveRecord::Schema.define(version: 2019_07_06_233204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -208,6 +208,13 @@ ActiveRecord::Schema.define(version: 2019_05_29_143559) do
     t.index ["uri"], name: "index_conversations_on_uri", unique: true
   end
 
+  create_table "custom_emoji_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_custom_emoji_categories_on_name", unique: true
+  end
+
   create_table "custom_emojis", force: :cascade do |t|
     t.string "shortcode", default: "", null: false
     t.string "domain"
@@ -221,6 +228,7 @@ ActiveRecord::Schema.define(version: 2019_05_29_143559) do
     t.string "uri"
     t.string "image_remote_url"
     t.boolean "visible_in_picker", default: true, null: false
+    t.bigint "category_id"
     t.index ["shortcode", "domain"], name: "index_custom_emojis_on_shortcode_and_domain", unique: true
   end
 
@@ -640,17 +648,6 @@ ActiveRecord::Schema.define(version: 2019_05_29_143559) do
     t.index ["tag_id", "status_id"], name: "index_statuses_tags_on_tag_id_and_status_id", unique: true
   end
 
-  create_table "stream_entries", force: :cascade do |t|
-    t.bigint "activity_id"
-    t.string "activity_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "hidden", default: false, null: false
-    t.bigint "account_id"
-    t.index ["account_id", "activity_type", "id"], name: "index_stream_entries_on_account_id_and_activity_type_and_id"
-    t.index ["activity_id", "activity_type"], name: "index_stream_entries_on_activity_id_and_activity_type"
-  end
-
   create_table "subscriptions", force: :cascade do |t|
     t.string "callback_url", default: "", null: false
     t.string "secret"
@@ -824,7 +821,6 @@ ActiveRecord::Schema.define(version: 2019_05_29_143559) do
   add_foreign_key "statuses", "statuses", column: "reblog_of_id", on_delete: :cascade
   add_foreign_key "statuses_tags", "statuses", on_delete: :cascade
   add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
-  add_foreign_key "stream_entries", "accounts", name: "fk_5659b17554", on_delete: :cascade
   add_foreign_key "subscriptions", "accounts", name: "fk_9847d1cbb5", on_delete: :cascade
   add_foreign_key "tombstones", "accounts", on_delete: :cascade
   add_foreign_key "user_invite_requests", "users", on_delete: :cascade

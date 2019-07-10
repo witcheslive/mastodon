@@ -26,16 +26,6 @@ doc << Ox::Element.new('XRD').tap do |xrd|
   end
 
   xrd << Ox::Element.new('Link').tap do |link|
-    link['rel']      = 'salmon'
-    link['href']     = api_salmon_url(@account.id)
-  end
-
-  xrd << Ox::Element.new('Link').tap do |link|
-    link['rel']      = 'magic-public-key'
-    link['href']     = "data:application/magic-public-key,#{@account.magic_key}"
-  end
-
-  xrd << Ox::Element.new('Link').tap do |link|
     link['rel']      = 'http://ostatus.org/schema/1.0/subscribe'
     link['template'] = "#{authorize_interaction_url}?acct={uri}"
   end
