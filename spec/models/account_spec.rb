@@ -450,7 +450,7 @@ RSpec.describe Account, type: :model do
   describe '.domains' do
     it 'returns domains' do
       Fabricate(:account, domain: 'domain')
-      expect(Account.domains).to match_array(['domain'])
+      expect(Account.remote.domains).to match_array(['domain'])
     end
   end
 
@@ -583,8 +583,25 @@ RSpec.describe Account, type: :model do
         expect(account.valid?).to be true
       end
 
+      it 'is valid if we are creating an instance actor account with a period' do
+        account = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        expect(account.valid?).to be true
+      end
+
+      it 'is valid if we are creating a possibly-conflicting instance actor account' do
+        account_1 = Fabricate(:account, username: 'examplecom')
+        account_2 = Fabricate.build(:account, id: -99, actor_type: 'Application', locked: true, username: 'example.com')
+        expect(account_2.valid?).to be true
+      end
+
       it 'is invalid if the username doesn\'t only contains letters, numbers and underscores' do
         account = Fabricate.build(:account, username: 'the-doctor')
+        account.valid?
+        expect(account).to model_have_error_on_field(:username)
+      end
+
+      it 'is invalid if the username contains a period' do
+        account = Fabricate.build(:account, username: 'the.doctor')
         account.valid?
         expect(account).to model_have_error_on_field(:username)
       end
@@ -665,7 +682,7 @@ RSpec.describe Account, type: :model do
           { username: 'b', domain: 'b' },
         ].map(&method(:Fabricate).curry(2).call(:account))
 
-        expect(Account.alphabetic).to eq matches
+        expect(Account.where('id > 0').alphabetic).to eq matches
       end
     end
 
@@ -732,7 +749,7 @@ RSpec.describe Account, type: :model do
         2.times { Fabricate(:account, domain: 'example.com') }
         Fabricate(:account, domain: 'example2.com')
 
-        results = Account.by_domain_accounts
+        results = Account.where('id > 0').by_domain_accounts
         expect(results.length).to eq 2
         expect(results.first.domain).to eq 'example.com'
         expect(results.first.accounts_count).to eq 2
@@ -745,7 +762,7 @@ RSpec.describe Account, type: :model do
       it 'returns an array of accounts who do not have a domain' do
         account_1 = Fabricate(:account, domain: nil)
         account_2 = Fabricate(:account, domain: 'example.com')
-        expect(Account.local).to match_array([account_1])
+        expect(Account.where('id > 0').local).to match_array([account_1])
       end
     end
 
@@ -756,14 +773,14 @@ RSpec.describe Account, type: :model do
           matches[index] = Fabricate(:account, domain: matches[index])
         end
 
-        expect(Account.partitioned).to match_array(matches)
+        expect(Account.where('id > 0').partitioned).to match_array(matches)
       end
     end
 
     describe 'recent' do
       it 'returns a relation of accounts sorted by recent creation' do
         matches = 2.times.map { Fabricate(:account) }
-        expect(Account.recent).to match_array(matches)
+        expect(Account.where('id > 0').recent).to match_array(matches)
       end
     end
 

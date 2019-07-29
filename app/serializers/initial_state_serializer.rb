@@ -75,6 +75,7 @@ class InitialStateSerializer < ActiveModel::Serializer
       store[:default_content_type] = object.current_account.user.setting_default_content_type
       store[:moon_phase]        = phaseday(Date.today.strftime("%Y").to_i, Date.today.strftime("%m").to_i, Date.today.strftime("%d").to_i)
       store[:use_blurhash]    = object.current_account.user.setting_use_blurhash
+      store[:use_pending_items] = object.current_account.user.setting_use_pending_items
     end
 
     store

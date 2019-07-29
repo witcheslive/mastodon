@@ -106,7 +106,8 @@ class User < ApplicationRecord
   delegate :auto_play_gif, :default_sensitive, :unfollow_modal, :boost_modal, :delete_modal,
            :reduce_motion, :system_font_ui, :noindex, :theme, :display_media, :hide_network,
            :expand_spoilers, :default_language, :aggregate_reblogs, :show_application, :default_content_type,
-           :moon_phase, :strip_formatting, :advanced_layout, :use_blurhash, to: :settings, prefix: :setting, allow_nil: false
+           :moon_phase, :strip_formatting, :advanced_layout, :use_blurhash, :use_pending_items,
+           to: :settings, prefix: :setting, allow_nil: false
 
   attr_reader :invite_code
   attr_writer :external
@@ -161,7 +162,11 @@ class User < ApplicationRecord
   end
 
   def active_for_authentication?
-    super && approved?
+    true
+  end
+
+  def functional?
+    confirmed? && approved? && !disabled? && !account.suspended?
   end
 
   def inactive_message

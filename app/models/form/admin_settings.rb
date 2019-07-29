@@ -29,6 +29,7 @@ class Form::AdminSettings
     thumbnail
     hero
     mascot
+    spam_check_enabled
   ).freeze
 
   BOOLEAN_KEYS = %i(
@@ -41,6 +42,7 @@ class Form::AdminSettings
     preview_sensitive_media
     profile_directory
     allow_username_login
+    spam_check_enabled
   ).freeze
 
   UPLOAD_KEYS = %i(

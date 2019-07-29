@@ -24,5 +24,6 @@ export const moonPhase = getMeta('moon_phase');
 export const forceSingleColumn = !getMeta('advanced_layout');
 export const defaultContentType = getMeta('default_content_type');
 export const useBlurhash = getMeta('use_blurhash');
+export const usePendingItems = getMeta('use_pending_items');
 
 export default initialState;

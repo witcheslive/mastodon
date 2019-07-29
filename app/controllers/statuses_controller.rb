@@ -8,11 +8,12 @@ class StatusesController < ApplicationController
 
   layout 'public'
 
+  before_action :require_signature!, only: :show, if: -> { request.format == :json && authorized_fetch_mode? }
   before_action :set_status
   before_action :set_instance_presenter
   before_action :set_link_headers
-  before_action :redirect_to_original, only: [:show]
-  before_action :set_referrer_policy_header, only: [:show]
+  before_action :redirect_to_original, only: :show
+  before_action :set_referrer_policy_header, only: :show
   before_action :set_cache_headers
   before_action :set_body_classes
   before_action :set_autoplay, only: :embed
@@ -30,15 +31,15 @@ class StatusesController < ApplicationController
       end
 
       format.json do
-        expires_in 3.minutes, public: @status.distributable?
-        render json: @status, content_type: 'application/activity+json', serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter
+        expires_in 3.minutes, public: @status.distributable? && public_fetch_mode?
+        render_with_cache json: @status, content_type: 'application/activity+json', serializer: ActivityPub::NoteSerializer, adapter: ActivityPub::Adapter
       end
     end
   end
 
   def activity
-    expires_in 3.minutes, public: @status.distributable?
-    render json: @status, content_type: 'application/activity+json', serializer: ActivityPub::ActivitySerializer, adapter: ActivityPub::Adapter
+    expires_in 3.minutes, public: @status.distributable? && public_fetch_mode?
+    render_with_cache json: @status, content_type: 'application/activity+json', serializer: ActivityPub::ActivitySerializer, adapter: ActivityPub::Adapter
   end
 
   def embed
