@@ -188,6 +188,7 @@ en:
       username: Username
       warn: Warn
       web: Web
+      whitelisted: Whitelisted
     action_logs:
       actions:
         assigned_to_self_report: "%{name} assigned report %{target} to themselves"
@@ -271,6 +272,11 @@ en:
       week_interactions: interactions this week
       week_users_active: active this week
       week_users_new: witches this week
+    domain_allows:
+      add_new: Whitelist domain
+      created_msg: Domain has been successfully whitelisted
+      destroyed_msg: Domain has been removed from the whitelist
+      undo: Remove from whitelist
     domain_blocks:
       add_new: Add new
       created_msg: Domain ward is now being processed
@@ -526,7 +532,8 @@ en:
     agreement_html: <b>The archdemons at "yahoo" have warded against our courier ravens. Please do not sign up with a yahoo email address.<br/><br/>By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
     apply_for_account: Request an invite
     change_password: Password
-    checkbox_agreement_html: I UNDERSTAND EVERYTHING WILL BREAK AND MY REGISTRATION WILL <big><b><i><u>NOT</b></i></u></big> WORK IF I USE A <big><b><i><u>YAHOO</b></i></u></big> EMAIL ADDRESS BECAUSE YAHOO ARE BAD, UNRULY DEMONS WHO WILL NOT DELIVER SIGNUP CONFIRMATIONS. I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
+    checkbox_agreement_html: PLEASE NOTE THAT YAHOO AND HOTMAIL ARE NOT GUARANTEED TO WORK. I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
+    checkbox_agreement_without_rules_html: I agree to the <a href="%{terms_path}" target="_blank">terms of service</a>
     confirm_email: Confirm email
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.
