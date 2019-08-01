@@ -530,7 +530,7 @@ en:
     your_token: Your access token
   auth:
     agreement_html: <b>The archdemons at "yahoo" have warded against our courier ravens. Please do not sign up with a yahoo email address.<br/><br/>By clicking "Sign up" below you agree to follow <a href="%{rules_path}">the rules of the instance</a> and <a href="%{terms_path}">our terms of service</a>.
-    apply_for_account: Request an invite
+    apply_for_account: Higgledy-piggledy! (That's witch for SIGN UP)
     change_password: Password
     checkbox_agreement_html: PLEASE NOTE THAT YAHOO AND HOTMAIL ARE NOT GUARANTEED TO WORK. I agree to the <a href="%{rules_path}" target="_blank">server rules</a> and <a href="%{terms_path}" target="_blank">terms of service</a>
     checkbox_agreement_without_rules_html: I agree to the <a href="%{terms_path}" target="_blank">terms of service</a>
@@ -561,7 +561,7 @@ en:
     status:
       account_status: Account status
       confirming: Waiting for e-mail confirmation to be completed.
-      pending: Your application is pending review by our staff. This may take some time. You will receive an e-mail if your application is approved.
+      pending: The Witchy Welcoming Committee is taking a quick scry to ensure you're a human witch and not a soulless spam automoton. Your passage into the comfort and safety of our spam wards should take less than an hour, much less at peak witchposting times. We apologize for the inconvinience, but rest assured the magical and spam-free experience is worth the short wait!
     trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: You are already following this account
