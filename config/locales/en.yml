@@ -249,6 +249,7 @@ en:
       updated_msg: Emoji successfully updated!
       upload: Upload
     dashboard:
+      authorized_fetch_mode: Authorized fetch mode
       backlog: backlogged jobs
       config: Configuration
       feature_deletions: Account deletions
@@ -272,6 +273,7 @@ en:
       week_interactions: interactions this week
       week_users_active: active this week
       week_users_new: witches this week
+      whitelist_mode: Whitelist mode
     domain_allows:
       add_new: Whitelist domain
       created_msg: Domain has been successfully whitelisted
@@ -462,8 +464,8 @@ en:
         title: Custom terms of service
       site_title: Server name
       spam_check_enabled:
-        desc_html: Mastodon can auto-silence and auto-report accounts based on measures such as detecting accounts who send repeated unsolicited messages. There may be false positives.
-        title: Anti-spam
+        desc_html: Mastodon can auto-silence and auto-report accounts that send repeated unsolicited messages. There may be false positives.
+        title: Anti-spam automation
       thumbnail:
         desc_html: Used for previews via OpenGraph and API. 1200x630px recommended
         title: Instance thumbnail
@@ -471,6 +473,9 @@ en:
         desc_html: Display public timeline on landing page
         title: Timeline preview
       title: Site settings
+      trends:
+        desc_html: Publicly display previously reviewed hashtags that are currently trending
+        title: Trending hashtags
     statuses:
       back_to_account: Back to account page
       batch:
@@ -516,6 +521,7 @@ en:
     advanced_web_interface_hint: 'If you want to make use of your entire screen width, the advanced web interface allows you to configure many different columns to see as much information at the same time as you want: Home, notifications, federated timeline, any number of lists and hashtags.'
     animations_and_accessibility: Animations and accessibility
     confirmation_dialogs: Confirmation dialogs
+    discovery: Discovery
     sensitive_content: Sensitive content
   application_mailer:
     notification_preferences: Change e-mail preferences
@@ -566,6 +572,7 @@ en:
       account_status: Account status
       confirming: Waiting for e-mail confirmation to be completed.
       pending: The Witchy Welcoming Committee is taking a quick scry to ensure you're a human witch and not a soulless spam automoton. Your passage into the comfort and safety of our spam wards should take less than an hour, much less at peak witchposting times. We apologize for the inconvinience, but rest assured the magical and spam-free experience is worth the short wait!
+      functional: Welcome to the coven! The witchy wards accept your passage.
     trouble_logging_in: Trouble logging in?
   authorize_follow:
     already_following: You are already following this account
