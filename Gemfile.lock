@@ -402,7 +402,7 @@ GEM
       http (~> 3.0)
       nokogiri (~> 1.8)
     ox (2.11.0)
-    paperclip (6.1.0)
+    paperclip (6.0.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       mime-types
