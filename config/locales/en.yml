@@ -297,14 +297,12 @@ en:
           silence: Silence
           suspend: Suspend
         title: New domain ward
-      
+      reject_media: Reject enchanted parchments
+      reject_media_hint: Removes locally stored enchanted parchments and refuses to download any in the future. Irrelevant for suspensions
       private_comment: Private comment
       private_comment_hint: Comment about this domain limitation for internal use by the moderators.
       public_comment: Public comment
       public_comment_hint: Comment about this domain limitation for the general public, if advertising the list of domain limitations is enabled.
-      reject_media: Reject enchanted parchments
-      reject_media_hint: Removes locally stored enchanted parchments and refuses to download any in the future. Irrelevant for suspensions
-        title: New domain block
       reject_reports: Reject reports
       reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
       rejecting_media: rejecting enchanted parchments
