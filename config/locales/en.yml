@@ -262,6 +262,8 @@ en:
       features: Features
       hidden_service: Federation with hidden services
       open_reports: open reports
+      pending_tags: hashtags waiting for review
+      pending_users: users waiting for review
       recent_users: Recent users
       search: Full-text search
       single_user_mode: Single user mode
@@ -284,6 +286,7 @@ en:
       created_msg: Domain ward is now being processed
       destroyed_msg: Domain ward has been undone
       domain: Domain
+      edit: Edit domain block
       existing_domain_block_html: You have already imposed stricter limits on %{name}, you need to <a href="%{unblock_url}">unblock it</a> first.
       new:
         create: Create ward
@@ -294,8 +297,14 @@ en:
           silence: Silence
           suspend: Suspend
         title: New domain ward
+      
+      private_comment: Private comment
+      private_comment_hint: Comment about this domain limitation for internal use by the moderators.
+      public_comment: Public comment
+      public_comment_hint: Comment about this domain limitation for the general public, if advertising the list of domain limitations is enabled.
       reject_media: Reject enchanted parchments
       reject_media_hint: Removes locally stored enchanted parchments and refuses to download any in the future. Irrelevant for suspensions
+        title: New domain block
       reject_reports: Reject reports
       reject_reports_hint: Ignore all reports coming from this domain. Irrelevant for suspensions
       rejecting_media: rejecting enchanted parchments
@@ -313,6 +322,7 @@ en:
         title: Undo domain ward for %{domain}
         undo: Undo
       undo: Undo domain ward
+      view: View domain ward
     email_domain_blocks:
       add_new: Add new
       created_msg: Successfully added e-mail domain to blacklist
@@ -336,6 +346,8 @@ en:
         all: All
         limited: Limited
         title: Moderation
+      private_comment: Private comment
+      public_comment: Public comment
       title: Federation
       total_blocked_by_us: Warded by us
       total_followed_by_them: Their discipleships
@@ -490,6 +502,9 @@ en:
       title: Account statuses
       with_media: With media
     tags:
+      accounts_today: Unique uses today
+      accounts_week: Unique uses this week
+      breakdown: Breakdown of today's usage by source
       context: Context
       directory: In directory
       in_directory: "%{count} in directory"
@@ -498,6 +513,8 @@ en:
       title: Hashtags
       trending_right_now: Trending right now
       unique_uses_today: "%{count} posting today"
+      unreviewed: Not reviewed
+      updated_msg: Hashtag settings updated successfully
     title: Administration
     warning_presets:
       add_new: Add new

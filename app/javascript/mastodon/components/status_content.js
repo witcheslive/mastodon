@@ -113,7 +113,7 @@ export default class StatusContent extends React.PureComponent {
   }
 
   onHashtagClick = (hashtag, e) => {
-    hashtag = hashtag.replace(/^#/, '').toLowerCase();
+    hashtag = hashtag.replace(/^#/, '');
 
     if (this.context.router && e.button === 0 && !(e.ctrlKey || e.metaKey)) {
       e.preventDefault();
@@ -165,11 +165,6 @@ export default class StatusContent extends React.PureComponent {
     } else {
       this.setState({ hidden: !this.state.hidden });
     }
-  }
-
-  handleCollapsedClick = (e) => {
-    e.preventDefault();
-    this.setState({ collapsed: !this.state.collapsed });
   }
 
   setRef = (c) => {
@@ -237,15 +232,19 @@ export default class StatusContent extends React.PureComponent {
         </div>
       );
     } else if (this.props.onClick) {
-      return (
+      const output = [
         <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle} onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
           <div className='status__content__text status__content__text--visible' style={directionStyle} dangerouslySetInnerHTML={content} lang={status.get('language')} />
 
-          {!!this.state.collapsed && readMoreButton}
-
           {!!status.get('poll') && <PollContainer pollId={status.get('poll')} />}
-        </div>
-      );
+        </div>,
+      ];
+
+      if (this.state.collapsed) {
+        output.push(readMoreButton);
+      }
+
+      return output;
     } else {
       return (
         <div className={classNames} ref={this.setRef} tabIndex='0' style={directionStyle}>
