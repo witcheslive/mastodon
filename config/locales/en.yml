@@ -632,6 +632,8 @@ en:
     people:
       one: "%{count} person"
       other: "%{count} people"
+  domain_validator:
+    invalid_domain: is not a valid domain name
   errors:
     '403': The familiars deny access. This page does not respond to your credential runes.
     '404': The familiars were unable to locate this page.
