@@ -10,6 +10,11 @@ import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import IconButton from 'mastodon/components/icon_button';
 import Button from 'mastodon/components/button';
 import Video from 'mastodon/features/video';
+import Textarea from 'react-textarea-autosize';
+import UploadProgress from 'mastodon/features/compose/components/upload_progress';
+import CharacterCounter from 'mastodon/features/compose/components/character_counter';
+import { length } from 'stringz';
+import { Tesseract as fetchTesseract } from 'mastodon/features/ui/util/async-components';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
@@ -29,6 +34,12 @@ const mapDispatchToProps = (dispatch, { id }) => ({
 
 });
 
+const removeExtraLineBreaks = str => str.replace(/\n\n/g, '******')
+  .replace(/\n/g, ' ')
+  .replace(/\*\*\*\*\*\*/g, '\n\n');
+
+const assetHost = process.env.CDN_HOST || '';
+
 export default @connect(mapStateToProps, mapDispatchToProps)
 @injectIntl
 class FocalPointModal extends ImmutablePureComponent {
@@ -47,6 +58,7 @@ class FocalPointModal extends ImmutablePureComponent {
     dragging: false,
     description: '',
     dirty: false,
+    progress: 0,
   };
 
   componentWillMount () {
@@ -72,6 +84,14 @@ class FocalPointModal extends ImmutablePureComponent {
     this.setState({ dragging: true });
   }
 
+  handleTouchStart = e => {
+    document.addEventListener('touchmove', this.handleMouseMove);
+    document.addEventListener('touchend', this.handleTouchEnd);
+
+    this.updatePosition(e);
+    this.setState({ dragging: true });
+  }
+
   handleMouseMove = e => {
     this.updatePosition(e);
   }
@@ -79,6 +99,13 @@ class FocalPointModal extends ImmutablePureComponent {
   handleMouseUp = () => {
     document.removeEventListener('mousemove', this.handleMouseMove);
     document.removeEventListener('mouseup', this.handleMouseUp);
+
+    this.setState({ dragging: false });
+  }
+
+  handleTouchEnd = () => {
+    document.removeEventListener('touchmove', this.handleMouseMove);
+    document.removeEventListener('touchend', this.handleTouchEnd);
 
     this.setState({ dragging: false });
   }
@@ -133,9 +160,29 @@ class FocalPointModal extends ImmutablePureComponent {
     this.node = c;
   }
 
+  handleTextDetection = () => {
+    const { media } = this.props;
+
+    this.setState({ detecting: true });
+
+    fetchTesseract().then(({ TesseractWorker }) => {
+      const worker = new TesseractWorker({
+        workerPath: `${assetHost}/packs/ocr/worker.min.js`,
+        corePath: `${assetHost}/packs/ocr/tesseract-core.wasm.js`,
+        langPath: `${assetHost}/ocr/lang-data`,
+      });
+
+      worker.recognize(media.get('url'))
+        .progress(({ progress }) => this.setState({ progress }))
+        .finally(() => worker.terminate())
+        .then(({ text }) => this.setState({ description: removeExtraLineBreaks(text), dirty: true, detecting: false }))
+        .catch(() => this.setState({ detecting: false }));
+    }).catch(() => this.setState({ detecting: false }));
+  }
+
   render () {
     const { media, intl, onClose } = this.props;
-    const { x, y, dragging, description, dirty } = this.state;
+    const { x, y, dragging, description, dirty, detecting, progress } = this.state;
 
     const width  = media.getIn(['meta', 'original', 'width']) || null;
     const height = media.getIn(['meta', 'original', 'height']) || null;
@@ -158,15 +205,27 @@ class FocalPointModal extends ImmutablePureComponent {
 
             <label className='setting-text-label' htmlFor='upload-modal__description'><FormattedMessage id='upload_form.description' defaultMessage='Describe for the visually impaired' /></label>
 
-            <textarea
-              id='upload-modal__description'
-              className='setting-text light'
-              value={description}
-              onChange={this.handleChange}
-              autoFocus
-            />
+            <div className='setting-text__wrapper'>
+              <Textarea
+                id='upload-modal__description'
+                className='setting-text light'
+                value={detecting ? '…' : description}
+                onChange={this.handleChange}
+                disabled={detecting}
+                autoFocus
+              />
 
-            <Button disabled={!dirty} text={intl.formatMessage(messages.apply)} onClick={this.handleSubmit} />
+              <div className='setting-text__modifiers'>
+                <UploadProgress progress={progress * 100} active={detecting} icon='file-text-o' message={<FormattedMessage id='upload_modal.analyzing_picture' defaultMessage='Analyzing picture…' />} />
+              </div>
+            </div>
+
+            <div className='setting-text__toolbar'>
+              <button disabled={detecting || media.get('type') !== 'image'} className='link-button' onClick={this.handleTextDetection}><FormattedMessage id='upload_modal.detect_text' defaultMessage='Detect text from picture' /></button>
+              <CharacterCounter max={420} text={detecting ? '' : description} />
+            </div>
+
+            <Button disabled={!dirty || detecting || length(description) > 420} text={intl.formatMessage(messages.apply)} onClick={this.handleSubmit} />
           </div>
 
           <div className='report-modal__statuses'>
@@ -181,7 +240,7 @@ class FocalPointModal extends ImmutablePureComponent {
                 </div>
 
                 <div className='focal-point__reticle' style={{ top: `${y * 100}%`, left: `${x * 100}%` }} />
-                <div className='focal-point__overlay' onMouseDown={this.handleMouseDown} />
+                <div className='focal-point__overlay' onMouseDown={this.handleMouseDown} onTouchStart={this.handleTouchStart} />
               </div>
             )}
 
