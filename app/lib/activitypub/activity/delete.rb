@@ -71,7 +71,7 @@ class ActivityPub::Activity::Delete < ActivityPub::Activity
   end
 
   def delete_now!
-    RemoveStatusService.new.call(@status)
+    RemoveStatusService.new.call(@status, redraft: false)
   end
 
   def payload

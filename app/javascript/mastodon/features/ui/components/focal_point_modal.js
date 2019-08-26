@@ -10,6 +10,7 @@ import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import IconButton from 'mastodon/components/icon_button';
 import Button from 'mastodon/components/button';
 import Video from 'mastodon/features/video';
+import Audio from 'mastodon/features/audio';
 import Textarea from 'react-textarea-autosize';
 import UploadProgress from 'mastodon/features/compose/components/upload_progress';
 import CharacterCounter from 'mastodon/features/compose/components/character_counter';
@@ -228,9 +229,9 @@ class FocalPointModal extends ImmutablePureComponent {
             <Button disabled={!dirty || detecting || length(description) > 420} text={intl.formatMessage(messages.apply)} onClick={this.handleSubmit} />
           </div>
 
-          <div className='report-modal__statuses'>
+          <div className='focal-point-modal__content'>
             {focals && (
-              <div className={classNames('focal-point', { dragging })} ref={this.setRef}>
+              <div className={classNames('focal-point', { dragging })} ref={this.setRef} onMouseDown={this.handleMouseDown} onTouchStart={this.handleTouchStart}>
                 {media.get('type') === 'image' && <img src={media.get('url')} width={width} height={height} alt='' />}
                 {media.get('type') === 'gifv' && <video src={media.get('url')} width={width} height={height} loop muted autoPlay />}
 
@@ -240,16 +241,27 @@ class FocalPointModal extends ImmutablePureComponent {
                 </div>
 
                 <div className='focal-point__reticle' style={{ top: `${y * 100}%`, left: `${x * 100}%` }} />
-                <div className='focal-point__overlay' onMouseDown={this.handleMouseDown} onTouchStart={this.handleTouchStart} />
+                <div className='focal-point__overlay' />
               </div>
             )}
 
-            {['audio', 'video'].includes(media.get('type')) && (
+            {media.get('type') === 'video' && (
               <Video
                 preview={media.get('preview_url')}
                 blurhash={media.get('blurhash')}
                 src={media.get('url')}
                 detailed
+                inline
+                editable
+              />
+            )}
+
+            {media.get('type') === 'audio' && (
+              <Audio
+                src={media.get('url')}
+                duration={media.getIn(['meta', 'original', 'duration'], 0)}
+                height={150}
+                preload
                 editable
               />
             )}
