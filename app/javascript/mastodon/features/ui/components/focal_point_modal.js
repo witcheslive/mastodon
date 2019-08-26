@@ -223,10 +223,10 @@ class FocalPointModal extends ImmutablePureComponent {
 
             <div className='setting-text__toolbar'>
               <button disabled={detecting || media.get('type') !== 'image'} className='link-button' onClick={this.handleTextDetection}><FormattedMessage id='upload_modal.detect_text' defaultMessage='Detect text from picture' /></button>
-              <CharacterCounter max={420} text={detecting ? '' : description} />
+              <CharacterCounter max={42069} text={detecting ? '' : description} />
             </div>
 
-            <Button disabled={!dirty || detecting || length(description) > 420} text={intl.formatMessage(messages.apply)} onClick={this.handleSubmit} />
+            <Button disabled={!dirty || detecting || length(description) > 42069} text={intl.formatMessage(messages.apply)} onClick={this.handleSubmit} />
           </div>
 
           <div className='focal-point-modal__content'>
