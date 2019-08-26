@@ -2349,7 +2349,7 @@
         "id": "navigation_bar.logout"
       },
       {
-        "defaultMessage": "Mastodon is open source software. You can contribute or report issues on GitHub at {github}.",
+        "defaultMessage": "Mastodon is AGPL-licenced libre software. You can contribute or report issues on GitHub at {github}. BTW, witches.live runs on Gentoo, and our witchy fork is at {witchesrepo}.",
         "id": "getting_started.open_source_notice"
       }
     ],

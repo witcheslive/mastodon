@@ -146,7 +146,7 @@
   "getting_started.invite": "Offer fellowship to the coven",
   "getting_started.directory": "Witch directory",
   "getting_started.heading": "Getting started",
-  "getting_started.open_source_notice": "Mastodon is open source software. You can contribute or report issues on GitHub at {github}. BTW, witches.live uses Gentoo. You can find our Mastodon fork with our customizations on GitHub at {witchesrepo}.",
+  "getting_started.open_source_notice": "Mastodon is AGPL-licenced libre software. You can contribute or report issues on GitHub at {github}. BTW, witches.live runs on Gentoo, and our witchy fork is at {witchesrepo}.",
   "getting_started.security": "Security",
   "getting_started.terms": "Terms of service",
   "hashtag.column_header.tag_mode.all": "and {additional}",
