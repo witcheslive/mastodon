@@ -80,9 +80,9 @@ class Formatter
   end
 
   def plaintext(status)
-    return status.text if status.local?
+    return status.text if status.local? && status.content_type == 'text/plain'
 
-    text = status.text.gsub(/(<br \/>|<br>|<\/p>)+/) { |match| "#{match}\n" }
+    text = (status.local? ? format(status) : status.text).gsub(/(<br \/>|<br>|<\/p>)+/) { |match| "#{match}\n" }
     strip_tags(text)
   end
 
