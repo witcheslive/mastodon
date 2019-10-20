@@ -57,6 +57,7 @@ class MediaAttachment < ApplicationRecord
     small: {
       convert_options: {
         output: {
+          'loglevel' => 'fatal',
           vf: 'scale=\'min(400\, iw):min(400\, ih)\':force_original_aspect_ratio=decrease',
         },
       },
@@ -64,6 +65,18 @@ class MediaAttachment < ApplicationRecord
       time: 0,
       file_geometry_parser: FastGeometryParser,
       blurhash: BLURHASH_OPTIONS,
+    },
+
+    original: {
+      keep_same_format: true,
+      convert_options: {
+        output: {
+          'loglevel' => 'fatal',
+          'map_metadata' => '-1',
+          'c:v' => 'copy',
+          'c:a' => 'copy',
+        },
+      },
     },
   }.freeze
 
@@ -73,6 +86,7 @@ class MediaAttachment < ApplicationRecord
       content_type: 'audio/mpeg',
       convert_options: {
         output: {
+          'loglevel' => 'fatal',
           'q:a' => 2,
         },
       },
@@ -86,14 +100,15 @@ class MediaAttachment < ApplicationRecord
       output: {
         'loglevel' => 'fatal',
         'movflags' => 'faststart',
-        'pix_fmt'  => 'yuv420p',
-        'vf'       => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
-        'vsync'    => 'cfr',
-        'c:v'      => 'h264',
-        'b:v'      => '500K',
-        'maxrate'  => '1300K',
-        'bufsize'  => '1300K',
-        'crf'      => 18,
+        'pix_fmt' => 'yuv420p',
+        'vf' => 'scale=\'trunc(iw/2)*2:trunc(ih/2)*2\'',
+        'vsync' => 'cfr',
+        'c:v' => 'h264',
+        'maxrate' => '1300K',
+        'bufsize' => '1300K',
+        'frames:v' => 60 * 60 * 3,
+        'crf' => 18,
+        'map_metadata' => '-1',
       },
     },
   }.freeze
@@ -103,7 +118,7 @@ class MediaAttachment < ApplicationRecord
     original: VIDEO_FORMAT,
   }.freeze
 
-  IMAGE_LIMIT = 8.megabytes
+  IMAGE_LIMIT = 10.megabytes
   VIDEO_LIMIT = 40.megabytes
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true
@@ -118,7 +133,7 @@ class MediaAttachment < ApplicationRecord
   validates_attachment_content_type :file, content_type: IMAGE_MIME_TYPES + VIDEO_MIME_TYPES + AUDIO_MIME_TYPES
   validates_attachment_size :file, less_than: IMAGE_LIMIT, unless: :larger_media_format?
   validates_attachment_size :file, less_than: VIDEO_LIMIT, if: :larger_media_format?
-  remotable_attachment :file, VIDEO_LIMIT
+  remotable_attachment :file, VIDEO_LIMIT, suppress_errors: false
 
   include Attachmentable
 
@@ -129,6 +144,7 @@ class MediaAttachment < ApplicationRecord
   scope :unattached, -> { where(status_id: nil, scheduled_status_id: nil) }
   scope :local,      -> { where(remote_url: '') }
   scope :remote,     -> { where.not(remote_url: '') }
+  scope :cached,     -> { remote.where.not(file_file_name: nil) }
 
   default_scope { order(id: :asc) }
 
@@ -243,7 +259,9 @@ class MediaAttachment < ApplicationRecord
 
   def set_meta
     meta = populate_meta
+
     return if meta == {}
+
     file.instance_write :meta, meta
   end
 
@@ -286,6 +304,7 @@ class MediaAttachment < ApplicationRecord
 
   def reset_parent_cache
     return if status_id.nil?
+
     Rails.cache.delete("statuses/#{status_id}")
   end
 end

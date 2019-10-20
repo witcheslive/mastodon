@@ -24,9 +24,12 @@ Rails.application.routes.draw do
   end
 
   get '.well-known/host-meta', to: 'well_known/host_meta#show', as: :host_meta, defaults: { format: 'xml' }
+  get '.well-known/nodeinfo', to: 'well_known/nodeinfo#index', as: :nodeinfo, defaults: { format: 'json' }
   get '.well-known/webfinger', to: 'well_known/webfinger#show', as: :webfinger
   get '.well-known/change-password', to: redirect('/auth/edit')
   get '.well-known/keybase-proof-config', to: 'well_known/keybase_proof_config#show'
+
+  get '/nodeinfo/2.0', to: 'well_known/nodeinfo#show', as: :nodeinfo_schema
 
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
@@ -41,6 +44,7 @@ Rails.application.routes.draw do
 
     namespace :auth do
       resource :setup, only: [:show, :update], controller: :setup
+      resource :challenge, only: [:create], controller: :challenges
     end
   end
 
@@ -133,8 +137,13 @@ Rails.application.routes.draw do
     end
 
     resource :delete, only: [:show, :destroy]
-    resource :migration, only: [:show, :update]
+    resource :migration, only: [:show, :create]
 
+    namespace :migration do
+      resource :redirect, only: [:new, :create, :destroy]
+    end
+
+    resources :aliases, only: [:index, :create, :destroy]
     resources :sessions, only: [:destroy]
     resources :featured_tags, only: [:index, :create, :destroy]
   end
@@ -242,11 +251,9 @@ Rails.application.routes.draw do
       resource :two_factor_authentication, only: [:destroy]
     end
 
-    resources :custom_emojis, only: [:index, :new, :create, :update, :destroy] do
-      member do
-        post :copy
-        post :enable
-        post :disable
+    resources :custom_emojis, only: [:index, :new, :create] do
+      collection do
+        post :batch
       end
     end
 
@@ -312,8 +319,6 @@ Rails.application.routes.draw do
           post :read
         end
       end
-
-      get '/search', to: 'search#index', as: :search
 
       resources :media,        only: [:create, :update]
       resources :blocks,       only: [:index]
@@ -444,7 +449,6 @@ Rails.application.routes.draw do
 
   get '/about',        to: 'about#show'
   get '/about/more',   to: 'about#more'
-  get '/about/blocks', to: 'about#blocks'
   get '/terms',        to: 'about#terms'
 
   match '/', via: [:post, :put, :patch, :delete], to: 'application#raise_not_found', format: false

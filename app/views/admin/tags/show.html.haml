@@ -3,7 +3,7 @@
 
 .dashboard__counters
   %div
-    = link_to web_url("timelines/tag/#{@tag.name}") do
+    = link_to tag_url(@tag), target: '_blank', rel: 'noopener' do
       .dashboard__counters__num= number_with_delimiter @accounts_today
       .dashboard__counters__label= t 'admin.tags.accounts_today'
   %div
@@ -11,9 +11,14 @@
       .dashboard__counters__num= number_with_delimiter @accounts_week
       .dashboard__counters__label= t 'admin.tags.accounts_week'
   %div
-    = link_to explore_hashtag_path(@tag) do
-      .dashboard__counters__num= number_with_delimiter @tag.accounts_count
-      .dashboard__counters__label= t 'admin.tags.directory'
+    - if @tag.accounts_count > 0
+      = link_to explore_hashtag_path(@tag) do
+        .dashboard__counters__num= number_with_delimiter @tag.accounts_count
+        .dashboard__counters__label= t 'admin.tags.directory'
+    - else
+      %div
+        .dashboard__counters__num= number_with_delimiter @tag.accounts_count
+        .dashboard__counters__label= t 'admin.tags.directory'
 
 %hr.spacer/
 
