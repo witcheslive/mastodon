@@ -632,7 +632,7 @@ en:
     status:
       account_status: Account status
       confirming: Waiting for e-mail confirmation to be completed.
-      pending: The Witchy Welcoming Committee is taking a quick scry to ensure you're a human witch and not a soulless spam automoton. Your passage into the comfort and safety of our spam wards should take less than an hour, much less at peak witchposting times. We apologize for the inconvinience, but rest assured the magical and spam-free experience is worth the short wait!
+      pending: The Witchy Welcoming Committee is taking a quick scry to ensure you're a human witch and not a soulless spam automoton. We're sorry for the wait, but we check multiple times a day and in order to do magic... you need a witch, not an automoton. 😉 Keep checking back, we'll approve you very soon!
       functional: Welcome to the coven! The witchy wards accept your passage.
       redirecting_to: Your account is inactive because it is currently redirecting to %{acct}.
     trouble_logging_in: Trouble logging in?
