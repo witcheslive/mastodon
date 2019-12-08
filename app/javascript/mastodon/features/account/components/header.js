@@ -239,7 +239,6 @@ class Header extends ImmutablePureComponent {
     const acctName        = this.props.account.get('acct');
     const displayNameHtml = { __html: account.get('display_name_html') };
     const fields          = account.get('fields');
-    const badge           = account.get('bot') ? (<div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div>) : null;
     const acct            = account.get('acct').indexOf('@') === -1 && domain ? `${account.get('acct')}@${domain}` : account.get('acct');
 
     function covenCheck() {
@@ -250,6 +249,16 @@ class Header extends ImmutablePureComponent {
     function covenCheckPre() {
       const isInCoven = !/\@/g.test(acctName);
       return isInCoven ? '⛤' : '';
+    }
+
+    let badge;
+
+    if (account.get('bot')) {
+      badge = (<div className='account-role bot'><FormattedMessage id='account.badges.bot' defaultMessage='Bot' /></div>);
+    } else if (account.get('group')) {
+      badge = (<div className='account-role group'><FormattedMessage id='account.badges.group' defaultMessage='Group' /></div>);
+    } else {
+      badge = null;
     }
 
     return (

@@ -42,7 +42,7 @@ if ENV['S3_ENABLED'] == 'true'
 
     s3_options: {
       signature_version: ENV.fetch('S3_SIGNATURE_VERSION') { 'v4' },
-      http_open_timeout: 5,
+      http_open_timeout: ENV.fetch('S3_OPEN_TIMEOUT'){ '5' }.to_i,
       http_read_timeout: 5,
       http_idle_timeout: 5,
       retry_limit: 0,
@@ -89,7 +89,7 @@ else
   Paperclip::Attachment.default_options.merge!(
     storage: :filesystem,
     use_timestamp: true,
-    path: ENV.fetch('PAPERCLIP_ROOT_PATH', ':rails_root/public/system') + '/:class/:attachment/:id_partition/:style/:filename',
+    path: File.join(ENV.fetch('PAPERCLIP_ROOT_PATH', File.join(':rails_root', 'public', 'system')), ':class', ':attachment', ':id_partition', ':style', ':filename'),
     url: ENV.fetch('PAPERCLIP_ROOT_URL', '/system') + '/:class/:attachment/:id_partition/:style/:filename',
   )
 end

@@ -80,6 +80,7 @@ en:
     roles:
       admin: Admin
       bot: Bot
+      group: Group
       moderator: Mod
     unavailable: Profile unavailable
     unfollow: Unfollow
@@ -407,6 +408,7 @@ en:
       are_you_sure: Are you sure?
       assign_to_self: Assign to me
       assigned: Assigned moderator
+      by_target_domain: Domain of reported account
       comment:
         none: None
       created_at: Reported
@@ -884,6 +886,10 @@ en:
       body: 'Your cant was channeled by %{name}:'
       subject: "%{name} channeled your cant"
       title: New channel
+  notifications:
+    email_events: Events for e-mail notifications
+    email_events_hint: 'Select events that you want to receive notifications for:'
+    other_settings: Other notifications settings
   number:
     human:
       decimal_units:
@@ -918,6 +924,8 @@ en:
   relationships:
     activity: Account activity
     dormant: Dormant
+    followers: Followers
+    following: Following
     last_active: Last active
     most_recent: Most recent
     moved: Moved
