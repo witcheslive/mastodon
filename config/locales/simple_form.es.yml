@@ -54,7 +54,7 @@ es:
       imports:
         data: Archivo CSV exportado desde otra instancia de Mastodon
       invite_request:
-        text: Esto nos ayudará a revisar su aplicación
+        text: Tu primera oportunidad para lanzar un hechizo en witches.live!<br /><br />Necesitamos verificar que no eres un bot, y que buscas rodearte de otrxs amantes de lo oculto.<br /><br />Aunque puedes hablar de lo que quieras en witches.live, recientemente hemos visto a mucha gente manifestar su interés por Mastodon, y queremos asegurarnos de que una instancia generalista como <a href="//mastodon.social" target="_blank">mastodon.social</a> no sería más apropiada para ti.<br /><br />Te pedimos por favor respondas las siguientes 3 preguntas en el formulario de abajo. Esto no es un test de "pureza" o de si eres suficientemente "goth", así que no te preocupes. Solamente queremos verificar que respondas las preguntas de una manera que tenga sentido y ver si tienes las ganas suficientes de unirte a nosotrxs. No hay respuestas falsas 😃<br /><br /><ol><li>¿Cuál es tu emoji favorito?</li><li>¿Cuál es tu dato curioso favorito sobre los gatos?</li><li>¿Qué tipo de hechizo más te gustaría usar para acabar con el capitalismo?</li>
       sessions:
         otp: 'Introduce el código de autenticación de dos factores geberado por tu aplicación de teléfono o usa uno de tus códigos de recuperación:'
       tag:
